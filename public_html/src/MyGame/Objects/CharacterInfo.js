@@ -27,6 +27,10 @@ CharacterInfo.prototype.setName = function(name, size, pos){
     this.mName.setTextHeight(size)
 }
 
+CharacterInfo.prototype.setNameSize = function(size){
+    this.mName.setTextHeight(size)
+}
+
 CharacterInfo.prototype.setSkill = function(skill, size, pos){
     let str = 'Skill: '
     str += skill
@@ -58,3 +62,4 @@ CharacterInfo.prototype.setColor = function(color,size,pos){
     xf.setPosition(pos[0],pos[1])
     xf.setSize(size[0],size[1])
 }
+

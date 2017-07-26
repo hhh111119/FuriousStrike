@@ -44,7 +44,7 @@ RigidShape.prototype.getAngularVelocity = function() { return this.mAngularVeloc
 RigidShape.prototype.setMass = function(m) { 
     if (m > 0) {
         this.mInvMass = 1 / m
-        this.mAcceleration = gEngine.Physics.getSystemAcceleration()
+        //this.mAcceleration = gEngine.Physics.getSystemAcceleration()
     } else {
         this.mInvMass = 0
         this.mAcceleration = [0, 0]

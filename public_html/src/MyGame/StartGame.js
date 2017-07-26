@@ -1,6 +1,6 @@
 'use strict'
 /*global gEngine*/ 
-function StartGame(){
+function StartGame(player1,player2){
     //this.kMinionSprite = 'assets/minion_sprite.png'
     //this.kPlatformTexture = 'assets/platform.png'
     //this.kWallTexture = 'assets/wall.png'
@@ -18,6 +18,8 @@ function StartGame(){
 
     this.mResult = null
 
+    this.mPlayer1Character = player1
+    this.mPlayer2Character = player2
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
@@ -31,7 +33,7 @@ StartGame.prototype.loadScene = function () {
 StartGame.prototype.unloadScene = function () {
     gEngine.Textures.unloadTexture(this.kPlayer1Texture)
     gEngine.Textures.unloadTexture(this.kPlayer2Texture)
-    let next = new EndScene(this.mResult)
+    let next = new StartScene(this.mResult)
     gEngine.Core.startScene(next)
    
 }
@@ -44,8 +46,8 @@ StartGame.prototype.initialize = function(){
     )
 
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
-    this.mPlayer1 = new Player1(this.kPlayer1Texture)
-    this.mPlayer2 = new Player2(this.kPlayer2Texture)
+    this.mPlayer1 = new Player1(this.kPlayer1Texture,this.mPlayer1Character)
+    this.mPlayer2 = new Player2(this.kPlayer2Texture,this.mPlayer2Character)
     this.mGamePlayers = new GameObjectSet()
     this.mGamePlayers.addToSet(this.mPlayer1)
     this.mGamePlayers.addToSet(this.mPlayer2)
