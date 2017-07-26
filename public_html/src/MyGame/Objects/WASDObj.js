@@ -7,7 +7,7 @@
 /* find out more about jslint: http://www.jslint.com/help.html */
 
 'use strict'  // Operate in Strict mode such that variables must be declared before used!
-var kWASDDelta = 0.3
+
 
 function WASDObj() {
 }
@@ -16,7 +16,7 @@ gEngine.Core.inheritPrototype(WASDObj, GameObject)
 WASDObj.prototype.keyControl = function () {
     var xform = this.getXform()
     let rgidbody = this.getRigidBody()
-    let Acc = 10
+    let Acc = 35
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.W)) {
         // xform.incYPosBy(kWASDDelta);
         rgidbody.setYAcceleration(Acc)

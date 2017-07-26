@@ -64,7 +64,7 @@ MyGame.prototype.wallAt = function (x, y, w) {
     xf.setSize(w, h)
     xf.setPosition(x, y)
     this.mNewBounds.addToSet(g)
-    this.mAllObjs.addToSet(g)
+   // this.mAllObjs.addToSet(g)
 }
 
 MyGame.prototype.platformAt = function (x, y, w, rot) {
@@ -82,7 +82,7 @@ MyGame.prototype.platformAt = function (x, y, w, rot) {
     xf.setPosition(x, y)
     xf.setRotationInDegree(rot)
     this.mNewBounds.addToSet(g)
-    this.mAllObjs.addToSet(g)
+    //this.mAllObjs.addToSet(g)
 }
 
 

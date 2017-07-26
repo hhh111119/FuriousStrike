@@ -46,7 +46,8 @@ function Minion(spriteTexture, atX, atY, createCircle) {
     this.setRigidBody(r)
     this.toggleDrawRenderable()
 }
-gEngine.Core.inheritPrototype(Minion, WASDObj)
+//gEngine.Core.inheritPrototype(Minion, WASDObj)
+gEngine.Core.inheritPrototype(Minion,DirectionKeyObj)
 
 Minion.prototype.update = function (aCamera) {
     GameObject.prototype.update.call(this)

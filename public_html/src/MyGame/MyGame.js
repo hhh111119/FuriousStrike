@@ -62,6 +62,7 @@ MyGame.prototype.initialize = function () {
     //sets the background to gray
     
     this.mHero = new Hero(this.kMinionSprite)
+   //this.mHero = new Player2(this.kTargetTexture)
     this.mAllObjs = new GameObjectSet()
 
     this.mNewBounds = new GameObjectSet()//creat a ref to wall and platform
@@ -171,8 +172,8 @@ MyGame.prototype.update = function () {
     this.mAllObjs.update(this.mCamera)
     this.mNewBounds.update(this.mCamera)
     
-    gEngine.Physics.processCollision(this.mAllObjs, this.mCollisionInfos)
-
+    gEngine.Physics.processCollision(this.mAllObjs.concat(this.mNewBounds), this.mCollisionInfos)
+    
     var p = obj.getXform().getPosition()
     this.mTarget.getXform().setPosition(p[0], p[1])
     msg += '  P(' + gEngine.Physics.getPositionalCorrection() + 

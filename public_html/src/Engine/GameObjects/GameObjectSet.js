@@ -43,6 +43,7 @@ GameObjectSet.prototype.draw = function (aCamera) {
 //just generate a new GameObjectSet but not change the origin
 GameObjectSet.prototype.concat = function (otherSet){
     let obj = new GameObjectSet()
-    obj.mSet = this.mSet+ otherSet.mSet
+    obj.mSet = obj.mSet.concat(this.mSet)
+    obj.mSet = obj.mSet.concat(otherSet.mSet)
     return obj
 }
