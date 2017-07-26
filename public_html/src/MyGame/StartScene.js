@@ -132,7 +132,7 @@ StartScene.prototype.unloadScene = function() {
     
     let next = null
     if(this.mSceneState === SceneState.StartGame)
-        next = new StartGame()
+        next = new Player1ChooseScene()
     else
         next = new AboutScene()
     gEngine.Core.startScene(next)
