@@ -33,7 +33,7 @@ StartGame.prototype.loadScene = function () {
 StartGame.prototype.unloadScene = function () {
     gEngine.Textures.unloadTexture(this.kPlayer1Texture)
     gEngine.Textures.unloadTexture(this.kPlayer2Texture)
-    let next = new StartScene(this.mResult)
+    let next = new EndScene(this.mResult)
     gEngine.Core.startScene(next)
    
 }
@@ -42,7 +42,7 @@ StartGame.prototype.initialize = function(){
     this.mCamera = new Camera(
         vec2.fromValues(0, 0), // position of the camera
         100,                     // width of camera
-        [0, 0, 800, 600]         // viewport (orgX, orgY, width, height)
+        [0, 0, 1000, 500]         // viewport (orgX, orgY, width, height)
     )
 
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
@@ -56,7 +56,7 @@ StartGame.prototype.initialize = function(){
     this.mGameArea.setColor([17/255,141/255,1,1])
     let xf = this.mGameArea.getXform()
     xf.setPosition(0,0)
-    xf.setSize(70,70)
+    xf.setSize(99,49)
 }
 
 StartGame.prototype.draw = function(){
@@ -75,17 +75,18 @@ StartGame.prototype.update = function(){
     gEngine.Physics.processCollision(this.mGamePlayers, this.mCollisionInfos)
     let pos1 = this.mPlayer1.getXform().getPosition()
     let pos2 = this.mPlayer2.getXform().getPosition()
-    if(pos1[0]>35 || pos1[0]<-35){
+    let boundSize = this.mGameArea.getXform().getSize()
+    if(pos1[0]>boundSize[0]/2 || pos1[0]<-boundSize[0]/2){
         this.mResult = 'player2 wins'
       
-    }else if(pos2[0]>35 || pos2[0]<-35){
+    }else if(pos2[0]>boundSize[0]/2|| pos2[0]<-boundSize[0]/2){
         this.mResult = 'player1 wins'
        
        
-    } else if(pos1[1]>35 || pos1[1]<-35){
+    } else if(pos1[1]>boundSize[1]/2  || pos1[1]<-boundSize[1]/2 ){
         this.mResult = 'player2 wins'
         
-    } else if(pos2[1]>35 || pos2[1]<-35){
+    } else if(pos2[1]>boundSize[1] /2 || pos2[1]<-boundSize[1] /2 ){
         this.mResult = 'player1 wins'
     }
 

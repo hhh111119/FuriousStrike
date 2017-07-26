@@ -83,6 +83,6 @@ EndScene.prototype.unloadScene = function() {
     
     
    
-    let next = new StartGame()
+    let next = new StartScene()
     gEngine.Core.startScene(next)
 }

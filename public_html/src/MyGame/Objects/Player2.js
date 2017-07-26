@@ -1,7 +1,7 @@
 function Player2(spriteTexture,character){
     this.mPlayer = new SpriteRenderable(spriteTexture)
     this.mPlayer.setColor([1, 0, 1, 0])
-    this.mPlayer.getXform().setPosition(30, 20)
+    this.mPlayer.getXform().setPosition(30, 15)
     // this.mPlayer.getXform().setSize(8, 8)
     GameObject.call(this, this.mPlayer)
 
