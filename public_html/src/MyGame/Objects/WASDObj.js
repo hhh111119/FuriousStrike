@@ -15,32 +15,32 @@ gEngine.Core.inheritPrototype(WASDObj, GameObject)
 
 WASDObj.prototype.keyControl = function () {
     var xform = this.getXform()
-    let rgidbody = this.getRigidBody()
+    let rigidbody = this.getRigidBody()
     let Acc = 35
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.W)) {
         // xform.incYPosBy(kWASDDelta);
-        rgidbody.setYAcceleration(Acc)
+        rigidbody.setYAcceleration(Acc)
     }
     if(gEngine.Input.isKeyReleased(gEngine.Input.keys.W)){
-        rgidbody.setYAcceleration(0)
+        rigidbody.setYAcceleration(0)
     }
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.S)) {
-        rgidbody.setYAcceleration(-Acc)
+        rigidbody.setYAcceleration(-Acc)
     } 
     if(gEngine.Input.isKeyReleased(gEngine.Input.keys.S)){
-        rgidbody.setYAcceleration(0)
+        rigidbody.setYAcceleration(0)
     }
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.A)) {
-        rgidbody.setXAcceleration(-Acc)
+        rigidbody.setXAcceleration(-Acc)
     }
     if(gEngine.Input.isKeyReleased(gEngine.Input.keys.A)){
-        rgidbody.setXAcceleration(0)
+        rigidbody.setXAcceleration(0)
     }
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.D)) {
-        rgidbody.setXAcceleration(Acc)
+        rigidbody.setXAcceleration(Acc)
     }
     if(gEngine.Input.isKeyReleased(gEngine.Input.keys.D)){
-        rgidbody.setXAcceleration(0)
+        rigidbody.setXAcceleration(0)
     }
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Z)) {
         xform.incRotationByDegree(1)
@@ -48,4 +48,6 @@ WASDObj.prototype.keyControl = function () {
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.X)) {
         xform.incRotationByDegree(-1)
     }
+    rigidbody.mAngularVelocity = rigidbody.mAngularVelocity * 0.999
+
 }
