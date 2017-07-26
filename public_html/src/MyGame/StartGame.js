@@ -43,7 +43,7 @@ StartGame.prototype.initialize = function(){
         [0, 0, 800, 600]         // viewport (orgX, orgY, width, height)
     )
 
-    this.mCamera.setBackgroundColor([0, 0.5, 0.5, 1])
+    this.mCamera.setBackgroundColor([1, 1, 1, 1])
     this.mPlayer1 = new Player1(this.kPlayer1Texture)
     this.mPlayer2 = new Player2(this.kPlayer2Texture)
     this.mGamePlayers = new GameObjectSet()
