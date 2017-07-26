@@ -11,6 +11,7 @@ function StartScene() {
     
     this.mCamera = null
     this.mMsg = null
+    //this.mMsg1 = null
     
 
     
@@ -27,14 +28,13 @@ StartScene.prototype.initialize = function () {
         [0, 0, 1000, 500],         // viewport (orgX, orgY, width, height)
         2
     )
-    this.mCamera.setBackgroundColor([0.9, 0.9, 0.9, 1])
+    this.mCamera.setBackgroundColor([1, 1, 1, 1])
 
-    this.mMsg = new FontRenderable('FURIOUS          STRIKE ')
-    this.mMsg.getXform().setPosition(26, 68)
+    this.mMsg = new FontRenderable('FURIOUS   STRIKE ')
+    this.mMsg.getXform().setPosition(26, 48)
     this.mMsg.setTextHeight(5)
     this.mMsg.draw(this.mCamera)
-    
-    
+
   
     
     
@@ -51,7 +51,10 @@ StartScene.prototype.draw = function () {
   
     this.mMsg.draw(this.mCamera)
     
-    
+    this.mMsg1 = new FontRenderable('Press <Space Bar> to begin')
+    this.mMsg1.getXform().setPosition(14, 30)
+    this.mMsg1.setTextHeight(5)
+    this.mMsg1.draw(this.mCamera)
     
     
    

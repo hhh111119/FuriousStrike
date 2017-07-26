@@ -51,7 +51,7 @@ StartGame.prototype.initialize = function(){
     this.mGamePlayers.addToSet(this.mPlayer2)
 
     this.mGameArea = new Renderable()
-    this.mGameArea.setColor([0,1,1,1])
+    this.mGameArea.setColor([17/255,141/255,1,1])
     let xf = this.mGameArea.getXform()
     xf.setPosition(0,0)
     xf.setSize(70,70)
