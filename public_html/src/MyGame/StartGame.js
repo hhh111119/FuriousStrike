@@ -84,7 +84,7 @@ StartGame.prototype.update = function(){
         this.mResult = 'player2 wins'
         
     } else if(pos2[1]>35 || pos2[1]<-35){
-        this.mResult = 'player1 winds'
+        this.mResult = 'player1 wins'
     }
 
     if(this.mResult !== null)

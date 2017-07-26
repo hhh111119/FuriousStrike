@@ -16,7 +16,7 @@ function RigidShape(xf) {
     this.mInvMass = 2
     this.mInertia = 0
     
-    this.mFriction = 0
+    this.mFriction = 0.8
     this.mRestitution = 0.6
     
     this.mAngularVelocity = 0
