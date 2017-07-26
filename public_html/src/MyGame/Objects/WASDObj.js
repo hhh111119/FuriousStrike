@@ -49,5 +49,9 @@ WASDObj.prototype.keyControl = function () {
         xform.incRotationByDegree(-1)
     }
     rigidbody.mAngularVelocity = rigidbody.mAngularVelocity * 0.999
+    //rigidbody.mVelocity = rigidbody.mVelocity * 0.1
+    //vec2.scale(rigidbody.mVelocity,0.999,0.999)
+    rigidbody.mVelocity[0] = rigidbody.mVelocity[0] * 0.9
+    rigidbody.mVelocity[1] = rigidbody.mVelocity[1] * 0.9
 
 }
