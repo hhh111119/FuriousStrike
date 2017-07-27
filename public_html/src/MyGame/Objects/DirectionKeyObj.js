@@ -10,29 +10,29 @@ DirectionKeyObj.prototype.keyControl = function () {
     var xform = this.getXform()
     let rigidbody = this.getRigidBody()
     let Acc = this.mAcc
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Up)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.I)) {
         // xform.incYPosBy(kWASDDelta);
         rigidbody.setYAcceleration(Acc)
     }
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Up)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.I)){
         rigidbody.setYAcceleration(0)
     }
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Down)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.K)) {
         rigidbody.setYAcceleration(-Acc)
     } 
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Down)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.K)){
         rigidbody.setYAcceleration(0)
     }
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Left)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.J)) {
         rigidbody.setXAcceleration(-Acc)
     }
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Left)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.J)){
         rigidbody.setXAcceleration(0)
     }
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Right)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.L)) {
         rigidbody.setXAcceleration(Acc)
     }
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Right)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.L)){
         rigidbody.setXAcceleration(0)
     }
     
@@ -46,29 +46,29 @@ DirectionKeyObj.prototype.inverseKeyControl = function () {
     var xform = this.getXform()
     let rigidbody = this.getRigidBody()
     let Acc = -this.mAcc
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Up)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.I)) {
         // xform.incYPosBy(kWASDDelta);
         rigidbody.setYAcceleration(Acc)
     }
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Up)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.I)){
         rigidbody.setYAcceleration(0)
     }
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Down)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.K)) {
         rigidbody.setYAcceleration(-Acc)
     } 
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Down)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.K)){
         rigidbody.setYAcceleration(0)
     }
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Left)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.J)) {
         rigidbody.setXAcceleration(-Acc)
     }
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Left)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.J)){
         rigidbody.setXAcceleration(0)
     }
-    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Right)) {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.L)) {
         rigidbody.setXAcceleration(Acc)
     }
-    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.Right)){
+    if(gEngine.Input.isKeyReleased(gEngine.Input.keys.L)){
         rigidbody.setXAcceleration(0)
     }
     

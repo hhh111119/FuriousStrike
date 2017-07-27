@@ -56,7 +56,7 @@ function Player1(spriteTexture,character){
     this.mGameCharacter = character
 }
 
-gEngine.Core.inheritPrototype(Player1,DirectionKeyObj)
+gEngine.Core.inheritPrototype(Player1,WASDObj)
 
 Player1.prototype.getSkillFrozenTime = function(){
     return this.mSkillFrozenTime
@@ -88,7 +88,7 @@ Player1.prototype.update = function () {
     if(this.mIsSkilling === false){
         GameObject.prototype.update.call(this)
         this.mSkillFrozenTime += 1
-        if(gEngine.Input.isKeyClicked(gEngine.Input.keys.Enter)){
+        if(gEngine.Input.isKeyClicked(gEngine.Input.keys.E)){
             if(this.mGameCharacter === GameCharacter.BigMan){
             //alert('big man skill')
                 if(Skill.bigManSkill(this.mSkillFrozenTime,this.getRigidBody())){
