@@ -18,7 +18,7 @@ function Player1(spriteTexture,character){
    
     //this.toggleDrawRenderable()
     //  alert(character)
-     if(character === GameCharacter.BigMan){
+    if(character === GameCharacter.BigMan){
         this.mPlayer.getXform().setSize(10, 10)
         r =  new RigidRectangle(this.getXform(), 10, 10)
         r.setMass(3)

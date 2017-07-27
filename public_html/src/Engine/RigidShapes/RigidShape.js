@@ -61,7 +61,7 @@ RigidShape.prototype.setMass = function(m) {
 }
 RigidShape.prototype.setInertia = function(i) { this.mInertia = i }
 RigidShape.prototype.setFriction = function(f) { this.mFriction = f }
-RigidShape.prototype.setRestitution = function(r) { this.mRestitution = r }
+RigidShape.prototype.setRestitution= function(r) { this.mRestitution = r }
 RigidShape.prototype.setAngularVelocity = function(w) { this.mAngularVelocity = w }
 RigidShape.prototype.setAngularVelocityDelta = function(dw) { this.mAngularVelocity += dw }
 

@@ -27,9 +27,19 @@ function StartGame(player1,player2){
     this.mBoundLeft = null
     this.mBoundRight = null
 
+    this.mObstacles = new GameObjectSet()
+
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
+
+StartGame.prototype.generateRandomObstacle = function(){
+    let random = (min, max) => {
+        return Math.random() * (max - min) + min
+    }
+    let obsacle1 = new Obstacle([30,-15],[random(3,7),random(3,7)],[random(1,2),random(1,2)])
+    this.mObstacles.addToSet(obsacle1)
+}
 
 StartGame.prototype.loadScene = function () {
     gEngine.Textures.loadTexture(this.kPlayer1Texture)
@@ -74,6 +84,7 @@ StartGame.prototype.initialize = function(){
     this.mBoundSet.addToSet(this.mBoundBottom)
     this.mBoundSet.addToSet(this.mBoundLeft)
     this.mBoundSet.addToSet(this.mBoundRight)
+    this.generateRandomObstacle()
 }
 
 StartGame.prototype.draw = function(){
@@ -83,6 +94,7 @@ StartGame.prototype.draw = function(){
     this.mGameArea.draw(this.mCamera)
     this.mGamePlayers.draw(this.mCamera)
     this.mBoundSet.draw(this.mCamera)
+    this.mObstacles.draw(this.mCamera)
    
 }
 
@@ -90,7 +102,9 @@ StartGame.prototype.update = function(){
     this.mPlayer1.keyControl()
     this.mPlayer2.keyControl()
     this.mGamePlayers.update(this.mCamera)
-    gEngine.Physics.processCollision(this.mGamePlayers.concat(this.mBoundSet), this.mCollisionInfos)
+    this.mObstacles.update(this.mCamera)
+    gEngine.Physics.processCollision(this.mGamePlayers.concat(this.mObstacles), this.mCollisionInfos)
+    gEngine.Physics.processCollision(this.mObstacles.concat(this.mBoundSet),this.mCollisionInfos)
     let pos1 = this.mPlayer1.getXform().getPosition()
     let pos2 = this.mPlayer2.getXform().getPosition()
     let boundSize = this.mGameArea.getXform().getSize()
