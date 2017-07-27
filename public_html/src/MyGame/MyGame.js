@@ -62,7 +62,7 @@ MyGame.prototype.initialize = function () {
     //sets the background to gray
     
     this.mHero = new Hero(this.kMinionSprite)
-   //this.mHero = new Player2(this.kTargetTexture)
+    //this.mHero = new Player2(this.kTargetTexture)
     this.mAllObjs = new GameObjectSet()
 
     this.mNewBounds = new GameObjectSet()//creat a ref to wall and platform

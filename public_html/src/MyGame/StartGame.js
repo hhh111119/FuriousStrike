@@ -20,6 +20,13 @@ function StartGame(player1,player2){
 
     this.mPlayer1Character = player1
     this.mPlayer2Character = player2
+
+    this.mBoundSet = new GameObjectSet()
+    this.mBoundTop = null
+    this.mBoundBottom = null
+    this.mBoundLeft = null
+    this.mBoundRight = null
+
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
@@ -57,6 +64,16 @@ StartGame.prototype.initialize = function(){
     let xf = this.mGameArea.getXform()
     xf.setPosition(0,0)
     xf.setSize(99,49)
+    //let pos = xf.getPosition()
+    // let size = xf.getSize()
+    this.mBoundTop = new BoundLine([0,25],[100,2])
+    this.mBoundBottom = new BoundLine([0,-25],[100,2])
+    this.mBoundLeft = new BoundLine([-50,0],[2,50])
+    this.mBoundRight = new BoundLine([50,0],[2,50])
+    this.mBoundSet.addToSet(this.mBoundTop)
+    this.mBoundSet.addToSet(this.mBoundBottom)
+    this.mBoundSet.addToSet(this.mBoundLeft)
+    this.mBoundSet.addToSet(this.mBoundRight)
 }
 
 StartGame.prototype.draw = function(){
@@ -65,6 +82,7 @@ StartGame.prototype.draw = function(){
     this.mCamera.setupViewProjection()
     this.mGameArea.draw(this.mCamera)
     this.mGamePlayers.draw(this.mCamera)
+    this.mBoundSet.draw(this.mCamera)
    
 }
 
@@ -72,7 +90,7 @@ StartGame.prototype.update = function(){
     this.mPlayer1.keyControl()
     this.mPlayer2.keyControl()
     this.mGamePlayers.update(this.mCamera)
-    gEngine.Physics.processCollision(this.mGamePlayers, this.mCollisionInfos)
+    gEngine.Physics.processCollision(this.mGamePlayers.concat(this.mBoundSet), this.mCollisionInfos)
     let pos1 = this.mPlayer1.getXform().getPosition()
     let pos2 = this.mPlayer2.getXform().getPosition()
     let boundSize = this.mGameArea.getXform().getSize()

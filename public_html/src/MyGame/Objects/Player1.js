@@ -17,8 +17,8 @@ function Player1(spriteTexture,character){
     // new RigidRectangle(this.getXform(), 8, 8)
    
     //this.toggleDrawRenderable()
-  //  alert(character)
-    if(character === GameCharacter.BigMan){
+    //  alert(character)
+     if(character === GameCharacter.BigMan){
         this.mPlayer.getXform().setSize(10, 10)
         r =  new RigidRectangle(this.getXform(), 10, 10)
         r.setMass(3)
@@ -32,17 +32,17 @@ function Player1(spriteTexture,character){
         this.mAcc = 75
         this.mMoveFric = 0.982
         this.mRotFric = 0.98
-        r.setMass(1)
-        this.mAcc = 35 
-        this.mMoveFric = 0.991
-        this.mRotFric = 0.991
+       
     }else{
         this.mPlayer.getXform().setSize(8, 8)
         r =  new RigidRectangle(this.getXform(), 8, 8)
+        r.autoSetMass()
         r.setMass(1)
         this.mAcc = 35 
         this.mMoveFric = 0.991
         this.mRotFric = 0.991
+        // r.setMass(1)
+       
     }
     this.setRigidBody(r)
     this.mGameCharacter = character
