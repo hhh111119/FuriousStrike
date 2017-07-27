@@ -23,7 +23,7 @@ AboutScene.prototype.initialize = function () {
     )
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
 
-    this.mMsg = new FontRenderable('To Do ..... ')
+    this.mMsg = new FontRenderable('To Do %..... ')
     this.mMsg.getXform().setPosition(26, 48)
     this.mMsg.setTextHeight(5)
      

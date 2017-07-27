@@ -1,5 +1,6 @@
 function Player2(spriteTexture,character){
-    this.mPlayer = new SpriteRenderable(spriteTexture)
+    // this.mPlayer = new SpriteRenderable(spriteTexture)
+    this.mPlayer = new Renderable()
     this.mPlayer.setColor([1, 0, 1, 0])
     this.mPlayer.getXform().setPosition(30, 15)
     // this.mPlayer.getXform().setSize(8, 8)
@@ -8,6 +9,10 @@ function Player2(spriteTexture,character){
     this.mRotFric = null 
     this.mAcc = null
 
+    this.mSkillFrozenTime = 0
+    this.mSkillLastTime = 0
+    this.mIsSkilling = false
+    this.mInverse = false
     // var r = new RigidRectangle(this.getXform(), 8, 8)
     var r = null
     if(character === GameCharacter.BigMan){
@@ -17,6 +22,7 @@ function Player2(spriteTexture,character){
         this.mAcc = 18 
         this.mMoveFric = 0.999
         this.mRotFric = 0.97
+        this.mPlayer.setColor([0, 0, 1, 1])
     }else if(character === GameCharacter.FlexMan){
         this.mPlayer.getXform().setSize(5, 5)
         r =  new RigidRectangle(this.getXform(), 5, 5)
@@ -24,7 +30,7 @@ function Player2(spriteTexture,character){
         this.mAcc = 75
         this.mMoveFric = 0.982
         this.mRotFric = 0.98
-       
+        this.mPlayer.setColor([0, 1, 0, 1])
     }else{
         this.mPlayer.getXform().setSize(8, 8)
         r =  new RigidRectangle(this.getXform(), 8, 8)
@@ -34,6 +40,7 @@ function Player2(spriteTexture,character){
         this.mMoveFric = 0.991
         this.mRotFric = 0.991
         // r.setMass(1)
+        this.mPlayer.setColor([0, 1, 1, 1])
        
     }
     this.setRigidBody(r)
@@ -43,8 +50,26 @@ function Player2(spriteTexture,character){
 
 gEngine.Core.inheritPrototype(Player2,WASDObj)
 
+Player2.prototype.getStateString = function(){
+    let str = 'Player2:'
+    let num = 0
+    if(this.mGameCharacter === GameCharacter.BigMan){
+        num = this.mSkillFrozenTime/Skill.getBigManFrozenTime() * 100
+    
+    }else if(this.mGameCharacter === GameCharacter.FlexMan){
+        num = this.mSkillFrozenTime/Skill.getFlexManFrozenTime() * 100
+    }else{
+        num = this.mSkillFrozenTime/Skill.getNormalManFrozenTime() * 100
+    }
+    if(num>100) num =100
+    num = Math.floor(num)
+    str += num.toString()
+    str += '%'
+    return str
+}
+
 Player2.prototype.update = function () {
-    GameObject.prototype.update.call(this)
+    /*  GameObject.prototype.update.call(this)
     if(gEngine.Input.isKeyClicked(gEngine.Input.keys.E)){
         if(this.mGameCharacter === GameCharacter.BigMan){
             alert('big man skill')
@@ -53,5 +78,72 @@ Player2.prototype.update = function () {
         }else{
             alert('balance man skill')
         }
+    }*/
+
+    if(this.mIsSkilling === false){
+        GameObject.prototype.update.call(this)
+        this.mSkillFrozenTime += 1
+        if(gEngine.Input.isKeyClicked(gEngine.Input.keys.E)){
+            if(this.mGameCharacter === GameCharacter.BigMan){
+            //alert('big man skill')
+                if(Skill.bigManSkill(this.mSkillFrozenTime,this.getRigidBody())){
+                    this.mSkillFrozenTime = 0
+                    this.mIsSkilling = true
+                    this.mRotFric = 1
+                    this.mAcc /= 5
+                }
+            }else if(this.mGameCharacter === GameCharacter.FlexMan){
+            //alert('speed man skill')
+                if(Skill.flexManSkill(this.mSkillFrozenTime,this.getRigidBody())){
+                    this.mSkillFrozenTime = 0
+                    this.mIsSkilling = true
+                    this.mAcc += 20
+                }
+            }else{
+            //alert('balance man skill')
+                if(Skill.normalManSkill(this.mSkillFrozenTime,this.getRigidBody())){
+                    this.mSkillFrozenTime = 0
+                    this.mIsSkilling = true
+                    this.mInverse = true
+                }
+            }
+        }
+    }else{
+        this.mSkillLastTime += 1
+        GameObject.prototype.update.call(this)
+        if(this.mGameCharacter === GameCharacter.BigMan){
+            //alert('big man skill')
+              
+            if(Skill.relieveBigManSkill(this.mSkillLastTime,this.getRigidBody())){
+                // GameObject.prototype.update.call(this)
+                this.mSkillLastTime = 0
+                this.mIsSkilling = false
+                this.mRotFric = 0.97
+                this.mAcc *= 5
+                
+            }
+        }else if(this.mGameCharacter === GameCharacter.FlexMan){
+            //alert('speed man skill')
+            //GameObject.prototype.update.call(this)
+            if(Skill.relieveFlexManSkill(this.mSkillLastTime,this.getRigidBody())){
+                this.mSkillLastTime = 0
+                this.mIsSkilling = false
+                this.mAcc -= 20
+            }
+        }else{
+            //alert('balance man skill')
+            // GameObject.prototype.update.call(this)
+            if(Skill.relieveNormalManSkill(this.mSkillLastTime,this)){
+                this.mSkillLastTime = 0
+                this.mIsSkilling = false
+                this.mInverse = false
+            }
+        }
+
     }
+
+}
+
+Player2.prototype.getInverse = function(){
+    return this.mInverse
 }

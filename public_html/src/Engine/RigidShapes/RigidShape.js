@@ -122,6 +122,7 @@ RigidShape.prototype.update = function () {
     
 RigidShape.prototype.userSetsState = function() {
     // keyboard control
+    /*
     var delta = 0
     
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Up)) {
@@ -152,7 +153,7 @@ RigidShape.prototype.userSetsState = function() {
                 this.mRestitution = 1
         }
     }
-    
+    */
 }
 
 

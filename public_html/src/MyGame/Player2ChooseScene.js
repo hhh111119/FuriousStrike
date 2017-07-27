@@ -36,7 +36,7 @@ Player2ChooseScene.prototype.initialize = function () {
     //character1
     this.mCharacter1 = new  CharacterInfo()
     this.mCharacter1.setName('Big Man',3,[5,70])
-    this.mCharacter1.setColor([1,0,0,1],[4,4],[6,65])
+    this.mCharacter1.setColor([0,0,1,1],[4,4],[6,65])
     this.mCharacter1.setWeight('100kg',2,[5,60])
     this.mCharacter1.setSkill('dd',2,[5,55])
     this.mCharacter1.setFeature('power',2,[5,50])
@@ -100,19 +100,19 @@ Player2ChooseScene.prototype.update = function () {
             this.mCharacter1.setNameSize(2)
             this.mCharacter1.setColor([0,0,0,1],[3,3],[6,65])
             this.mCharacter2.setNameSize(3)
-            this.mCharacter2.setColor([1,1,0,1],[4,4],[36,65])
+            this.mCharacter2.setColor([0,1,0,1],[4,4],[36,65])
         }else if(this.mPlayer2GameCharacter === GameCharacter.FlexMan){
             this.mPlayer2GameCharacter = GameCharacter.NormalMan
             this.mCharacter2.setNameSize(2)
             this.mCharacter2.setColor([0,0,0,1],[3,3],[36,65])
             this.mCharacter3.setNameSize(3)
-            this.mCharacter3.setColor([1,0,1,1],[4,4],[71,65])
+            this.mCharacter3.setColor([0,1,1,1],[4,4],[71,65])
         }else if(this.mPlayer2GameCharacter === GameCharacter.NormalMan){
             this.mPlayer2GameCharacter = GameCharacter.BigMan
             this.mCharacter3.setNameSize(2)
             this.mCharacter3.setColor([0,0,0,1],[3,3],[71,65])
             this.mCharacter1.setNameSize(3)
-            this.mCharacter1.setColor([1,0,0,1],[4,4],[6,65])
+            this.mCharacter1.setColor([0,0,1,1],[4,4],[6,65])
         }
     }
     if(gEngine.Input.isKeyClicked(gEngine.Input.keys.Left)){
@@ -124,14 +124,14 @@ Player2ChooseScene.prototype.update = function () {
             // this.mCharacter2.setNameSize(3)
             // this.mCharacter2.setColor([1,1,0,1],[4,4],[36,65])
             this.mCharacter3.setNameSize(3)
-            this.mCharacter3.setColor([1,0,1,1],[4,4],[71,65])
+            this.mCharacter3.setColor([0,1,1,1],[4,4],[71,65])
         }else if(this.mPlayer2GameCharacter === GameCharacter.FlexMan){
             // this.mPlayer2GameCharacter = GameCharacter.NormalMan
             this.mPlayer2GameCharacter = GameCharacter.BigMan
             this.mCharacter2.setNameSize(2)
             this.mCharacter2.setColor([0,0,0,1],[3,3],[36,65])
             this.mCharacter1.setNameSize(3)
-            this.mCharacter1.setColor([1,0,0,1],[4,4],[6,65])
+            this.mCharacter1.setColor([0,0,1,1],[4,4],[6,65])
             // this.mCharacter3.setNameSize(3)
             //  this.mCharacter3.setColor([1,0,1,1],[4,4],[71,65])
         }else if(this.mPlayer2GameCharacter === GameCharacter.NormalMan){
@@ -141,7 +141,7 @@ Player2ChooseScene.prototype.update = function () {
             // this.mCharacter1.setNameSize(3)
             //this.mCharacter1.setColor([1,0,0,1],[4,4],[6,65])
             this.mCharacter2.setNameSize(3)
-            this.mCharacter2.setColor([1,1,0,1],[4,4],[36,65])
+            this.mCharacter2.setColor([0,1,0,1],[4,4],[36,65])
         }
     }
     

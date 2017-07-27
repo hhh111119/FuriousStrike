@@ -29,6 +29,9 @@ function StartGame(player1,player2){
 
     this.mObstacles = new GameObjectSet()
 
+    this.mPlayer1SkillMsg = null
+    this.mPlayer2SkillMsg = null
+
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
@@ -38,7 +41,11 @@ StartGame.prototype.generateRandomObstacle = function(){
         return Math.random() * (max - min) + min
     }
     let obsacle1 = new Obstacle([30,-15],[random(3,7),random(3,7)],[random(1,2),random(1,2)])
+    let obsacle2 = new Obstacle([-30,15],[random(3,7),random(3,7)],[random(1,2),random(1,2)])
+    let obsacle3 = new Obstacle([0,0],[random(3,7),random(3,7)],[random(1,2),random(1,2)])
     this.mObstacles.addToSet(obsacle1)
+    this.mObstacles.addToSet(obsacle2)
+    this.mObstacles.addToSet(obsacle3)
 }
 
 StartGame.prototype.loadScene = function () {
@@ -50,16 +57,22 @@ StartGame.prototype.loadScene = function () {
 StartGame.prototype.unloadScene = function () {
     gEngine.Textures.unloadTexture(this.kPlayer1Texture)
     gEngine.Textures.unloadTexture(this.kPlayer2Texture)
+    let canvas = document.getElementById('GLCanvas')
+    canvas.width = '1000'
+    canvas.height = '500'
     let next = new EndScene(this.mResult)
     gEngine.Core.startScene(next)
    
 }
 
 StartGame.prototype.initialize = function(){
+    let canvas = document.getElementById('GLCanvas')
+    canvas.width = '1200'
+    canvas.height = '1000'
     this.mCamera = new Camera(
         vec2.fromValues(0, 0), // position of the camera
         100,                     // width of camera
-        [0, 0, 1000, 500]         // viewport (orgX, orgY, width, height)
+        [100, 200, 1000, 800]         // viewport (orgX, orgY, width, height)
     )
 
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
@@ -73,7 +86,7 @@ StartGame.prototype.initialize = function(){
     this.mGameArea.setColor([17/255,141/255,1,1])
     let xf = this.mGameArea.getXform()
     xf.setPosition(0,0)
-    xf.setSize(99,49)
+    xf.setSize(100,49)
     //let pos = xf.getPosition()
     // let size = xf.getSize()
     this.mBoundTop = new BoundLine([0,25],[100,2])
@@ -85,22 +98,48 @@ StartGame.prototype.initialize = function(){
     this.mBoundSet.addToSet(this.mBoundLeft)
     this.mBoundSet.addToSet(this.mBoundRight)
     this.generateRandomObstacle()
+
+
+    let str = this.mPlayer1.getStateString()
+    this.mPlayer1SkillMsg = new FontRenderable(str)
+    this.mPlayer1SkillMsg.getXform().setPosition(0, 35)
+    this.mPlayer1SkillMsg.setTextHeight(5)
+
+    str = this.mPlayer2.getStateString()
+    this.mPlayer2SkillMsg = new FontRenderable(str)
+    this.mPlayer2SkillMsg.getXform().setPosition(0,30)
+    this.mPlayer2SkillMsg.setTextHeight(5)
+    
 }
 
 StartGame.prototype.draw = function(){
+
     gEngine.Core.clearCanvas([1, 1, 1, 1.0]) // clear to light gray
    
     this.mCamera.setupViewProjection()
     this.mGameArea.draw(this.mCamera)
     this.mGamePlayers.draw(this.mCamera)
-    this.mBoundSet.draw(this.mCamera)
+    // this.mBoundSet.draw(this.mCamera)
     this.mObstacles.draw(this.mCamera)
-   
+    this.mPlayer1SkillMsg.draw(this.mCamera)
+    this.mPlayer2SkillMsg.draw(this.mCamera)
 }
 
 StartGame.prototype.update = function(){
     this.mPlayer1.keyControl()
-    this.mPlayer2.keyControl()
+    if(this.mPlayer2.getInverse()===true){
+        this.mPlayer1.inverseKeyControl()
+    }else{
+        this.mPlayer1.keyControl()
+    }
+    if(this.mPlayer1.getInverse()===true){
+        // alert('inverse')
+        this.mPlayer2.inverseKeyControl()
+    }else{
+        this.mPlayer2.keyControl()
+    }
+    //this.mPlayer2.inverseKeyControl()
+    //this.mPlayer2.keyControl()
     this.mGamePlayers.update(this.mCamera)
     this.mObstacles.update(this.mCamera)
     gEngine.Physics.processCollision(this.mGamePlayers.concat(this.mObstacles), this.mCollisionInfos)
@@ -124,4 +163,14 @@ StartGame.prototype.update = function(){
 
     if(this.mResult !== null)
         gEngine.GameLoop.stop()
+
+    let str = this.mPlayer1.getStateString()
+    this.mPlayer1SkillMsg = new FontRenderable(str)
+    this.mPlayer1SkillMsg.getXform().setPosition(0, 35)
+    this.mPlayer1SkillMsg.setTextHeight(5)
+
+    str = this.mPlayer2.getStateString()
+    this.mPlayer2SkillMsg = new FontRenderable(str)
+    this.mPlayer2SkillMsg.getXform().setPosition(0,30)
+    this.mPlayer2SkillMsg.setTextHeight(5)
 }
