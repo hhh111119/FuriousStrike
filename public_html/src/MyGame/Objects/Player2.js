@@ -6,7 +6,7 @@ function Player2(spriteTexture,character){
     GameObject.call(this, this.mPlayer)
 
     // var r = new RigidRectangle(this.getXform(), 8, 8)
-
+    var r = null
     if(character === GameCharacter.BigMan){
         this.mPlayer.getXform().setSize(10, 10)
         r =  new RigidRectangle(this.getXform(), 10, 10)
@@ -18,7 +18,8 @@ function Player2(spriteTexture,character){
     }else{
         this.mPlayer.getXform().setSize(8, 8)
         r =  new RigidRectangle(this.getXform(), 8, 8)
-        r.setMass(1)
+        // r.setMass(1)
+        r.autoSetMass()
     }
     this.setRigidBody(r)
     //this.toggleDrawRenderable()

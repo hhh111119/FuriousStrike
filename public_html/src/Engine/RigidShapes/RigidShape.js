@@ -41,6 +41,12 @@ RigidShape.prototype.getFriction = function() { return this.mFriction }
 RigidShape.prototype.getRestitution = function() { return this.mRestitution }
 RigidShape.prototype.getAngularVelocity = function() { return this.mAngularVelocity }
 
+RigidShape.prototype.autoSetMass = function(){
+    let size = this.mXform.getSize()
+    let area = size[0] * size[1]
+    let m = 0.03
+    this.setMass(m*area)
+}
 RigidShape.prototype.setMass = function(m) { 
     if (m > 0) {
         this.mInvMass = 1 / m

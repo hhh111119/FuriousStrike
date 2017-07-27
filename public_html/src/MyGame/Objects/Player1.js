@@ -26,7 +26,7 @@ function Player1(spriteTexture,character){
     }else{
         this.mPlayer.getXform().setSize(8, 8)
         r =  new RigidRectangle(this.getXform(), 8, 8)
-        r.setMass(1)
+        r.autoSetMass()
     }
     this.setRigidBody(r)
     this.mGameCharacter = character

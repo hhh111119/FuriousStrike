@@ -6,7 +6,7 @@ function BoundLine(pos,size){
     this.mBound.getXform().setSize(size[0],size[1])
 
     GameObject.call(this, this.mBound)
-    r =  new RigidRectangle(this.getXform(), size[0], size[1])
+    let r =  new RigidRectangle(this.getXform(), size[0], size[1])
     r.setMass(0)
     this.setRigidBody(r)
 }
