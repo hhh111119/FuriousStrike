@@ -56,11 +56,11 @@ Player2ChooseScene.prototype.initialize = function () {
     this.mCharacter3.setFeature('balance',2,[65,50])
     let str = ''
     if(this.mPlayer1GameCharacter === GameCharacter.BigMan)
-        str += 'Player1: Big Man '
+        str += 'Player1: Hulk '
     else if(this.mPlayer1GameCharacter === GameCharacter.FlexMan)
-        str += 'Player1: Speed Man'
+        str += 'Player1: Flash '
     else
-        str += 'Player1: Balance Man'
+        str += 'Player1: CaptainAmerica'
     this.mMsg = new FontRenderable(str)
     this.mMsg.getXform().setPosition(6, 40)
     this.mMsg.setTextHeight(5)
@@ -106,11 +106,11 @@ Player2ChooseScene.prototype.update = function () {
             this.mCharacter2.setNameSize(2)
             this.mCharacter2.setColor([0,0,0,1],[3,3],[36,65])
             this.mCharacter3.setNameSize(3)
-            this.mCharacter3.setColor([0,1,1,1],[4,4],[71,65])
+            this.mCharacter3.setColor([0,1,1,1],[4,4],[66,65])
         }else if(this.mPlayer2GameCharacter === GameCharacter.NormalMan){
             this.mPlayer2GameCharacter = GameCharacter.BigMan
             this.mCharacter3.setNameSize(2)
-            this.mCharacter3.setColor([0,0,0,1],[3,3],[71,65])
+            this.mCharacter3.setColor([0,0,0,1],[3,3],[66,65])
             this.mCharacter1.setNameSize(3)
             this.mCharacter1.setColor([0,0,1,1],[4,4],[6,65])
         }
@@ -124,7 +124,7 @@ Player2ChooseScene.prototype.update = function () {
             // this.mCharacter2.setNameSize(3)
             // this.mCharacter2.setColor([1,1,0,1],[4,4],[36,65])
             this.mCharacter3.setNameSize(3)
-            this.mCharacter3.setColor([0,1,1,1],[4,4],[71,65])
+            this.mCharacter3.setColor([0,1,1,1],[4,4],[66,65])
         }else if(this.mPlayer2GameCharacter === GameCharacter.FlexMan){
             // this.mPlayer2GameCharacter = GameCharacter.NormalMan
             this.mPlayer2GameCharacter = GameCharacter.BigMan
@@ -137,7 +137,7 @@ Player2ChooseScene.prototype.update = function () {
         }else if(this.mPlayer2GameCharacter === GameCharacter.NormalMan){
             this.mPlayer2GameCharacter = GameCharacter.FlexMan
             this.mCharacter3.setNameSize(2)
-            this.mCharacter3.setColor([0,0,0,1],[3,3],[71,65])
+            this.mCharacter3.setColor([0,0,0,1],[3,3],[66,65])
             // this.mCharacter1.setNameSize(3)
             //this.mCharacter1.setColor([1,0,0,1],[4,4],[6,65])
             this.mCharacter2.setNameSize(3)

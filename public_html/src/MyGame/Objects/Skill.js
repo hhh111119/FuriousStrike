@@ -1,5 +1,5 @@
 let Skill = (function(){
-    const bigManFrozenTime = 800
+    const bigManFrozenTime = 1200
     const flexManFrozenTime = 800
     const normalManFrozenTime = 800
 

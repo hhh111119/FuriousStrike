@@ -3,6 +3,7 @@ function CharacterInfo(){
     this.mColor = null
     this.mWeight = null
     this.mSkill = null
+    this.mSkillDetail = null
     this.mFeature = null
 }
 
@@ -17,6 +18,8 @@ CharacterInfo.prototype.draw = function(camera){
         this.mSkill.draw(camera)
     if(this.mFeature !== null)
         this.mFeature.draw(camera)
+    if(this.mSkillDetail !== null)
+        this.mSkillDetail.draw(camera)
 }
 
 CharacterInfo.prototype.setName = function(name, size, pos){
@@ -37,6 +40,14 @@ CharacterInfo.prototype.setSkill = function(skill, size, pos){
     this.mSkill = new FontRenderable(str)
     this.mSkill.getXform().setPosition(pos[0], pos[1])
     this.mSkill.setTextHeight(size)
+}
+
+CharacterInfo.prototype.setSkillDetail = function(skillDetail, size, pos){
+    let str = ''
+    str += skillDetail
+    this.mSkillDetail = new FontRenderable(str)
+    this.mSkillDetail.getXform().setPosition(pos[0], pos[1])
+    this.mSkillDetail.setTextHeight(size)
 }
 
 CharacterInfo.prototype.setWeight = function(weight, size, pos){

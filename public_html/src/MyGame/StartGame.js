@@ -102,12 +102,12 @@ StartGame.prototype.initialize = function(){
 
     let str = this.mPlayer1.getStateString()
     this.mPlayer1SkillMsg = new FontRenderable(str)
-    this.mPlayer1SkillMsg.getXform().setPosition(-5, 35)
+    this.mPlayer1SkillMsg.getXform().setPosition(-18, 35)
     this.mPlayer1SkillMsg.setTextHeight(5)
 
     str = this.mPlayer2.getStateString()
     this.mPlayer2SkillMsg = new FontRenderable(str)
-    this.mPlayer2SkillMsg.getXform().setPosition(-5,30)
+    this.mPlayer2SkillMsg.getXform().setPosition(-18,30)
     this.mPlayer2SkillMsg.setTextHeight(5)
     
 }
@@ -161,16 +161,20 @@ StartGame.prototype.update = function(){
         this.mResult = 'player1 wins'
     }
 
-    if(this.mResult !== null)
+    if(this.mResult !== null){
+        //CameraShake(state, xDelta, yDelta, shakeFrequency, shakeDuration)
+        //let shake = new CameraShake(this.mCamera,1,1,1,2)
+        //this.mCamera.shake(1,1,1,1000)
+      
         gEngine.GameLoop.stop()
-
+    }
     let str = this.mPlayer1.getStateString()
     this.mPlayer1SkillMsg = new FontRenderable(str)
-    this.mPlayer1SkillMsg.getXform().setPosition(-5, 35)
+    this.mPlayer1SkillMsg.getXform().setPosition(-18, 35)
     this.mPlayer1SkillMsg.setTextHeight(5)
 
     str = this.mPlayer2.getStateString()
     this.mPlayer2SkillMsg = new FontRenderable(str)
-    this.mPlayer2SkillMsg.getXform().setPosition(-5,30)
+    this.mPlayer2SkillMsg.getXform().setPosition(-18,30)
     this.mPlayer2SkillMsg.setTextHeight(5)
 }

@@ -30,7 +30,7 @@ function Player1(spriteTexture,character){
         r =  new RigidRectangle(this.getXform(), 10, 10)
         r.setMass(3)
         this.mAcc = 18 
-        this.mMoveFric = 0.999
+        this.mMoveFric = 0.993
         this.mRotFric = 0.97
         this.mPlayer.setColor([1, 0, 0, 1])
     }else if(character === GameCharacter.FlexMan){
