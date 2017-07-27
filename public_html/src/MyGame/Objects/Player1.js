@@ -141,7 +141,7 @@ Player1.prototype.update = function () {
             if(Skill.relieveNormalManSkill(this.mSkillLastTime,this)){
                 this.mSkillLastTime = 0
                 this.mIsSkilling = false
-                this.mInverse = true
+                this.mInverse = false
             }
         }
 

@@ -36,7 +36,7 @@ let Skill = (function(){
         if(time>=bigManLastTime){
             
             //alert('bigman')
-            alert(2)
+            //alert(2)
             rigidBody.setAngularVelocity(0)
             rigidBody.autoSetMass()
             rigidBody.setVelocity(0,0)

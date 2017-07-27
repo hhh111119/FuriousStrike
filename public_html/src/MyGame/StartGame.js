@@ -126,7 +126,7 @@ StartGame.prototype.draw = function(){
 }
 
 StartGame.prototype.update = function(){
-    this.mPlayer1.keyControl()
+
     if(this.mPlayer2.getInverse()===true){
         this.mPlayer1.inverseKeyControl()
     }else{
