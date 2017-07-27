@@ -40,9 +40,9 @@ StartGame.prototype.generateRandomObstacle = function(){
     let random = (min, max) => {
         return Math.random() * (max - min) + min
     }
-    let obsacle1 = new Obstacle([30,-15],[random(3,7),random(3,7)],[random(1,2),random(1,2)])
-    let obsacle2 = new Obstacle([-30,15],[random(3,7),random(3,7)],[random(1,2),random(1,2)])
-    let obsacle3 = new Obstacle([0,0],[random(3,7),random(3,7)],[random(1,2),random(1,2)])
+    let obsacle1 = new Obstacle([30,-15],[random(3,10),random(3,10)],[random(1,2),random(1,2)])
+    let obsacle2 = new Obstacle([-30,15],[random(3,10),random(3,10)],[random(1,2),random(1,2)])
+    let obsacle3 = new Obstacle([0,0],[random(3,10),random(3,10)],[random(1,2),random(1,2)])
     this.mObstacles.addToSet(obsacle1)
     this.mObstacles.addToSet(obsacle2)
     this.mObstacles.addToSet(obsacle3)
@@ -102,12 +102,12 @@ StartGame.prototype.initialize = function(){
 
     let str = this.mPlayer1.getStateString()
     this.mPlayer1SkillMsg = new FontRenderable(str)
-    this.mPlayer1SkillMsg.getXform().setPosition(0, 35)
+    this.mPlayer1SkillMsg.getXform().setPosition(-5, 35)
     this.mPlayer1SkillMsg.setTextHeight(5)
 
     str = this.mPlayer2.getStateString()
     this.mPlayer2SkillMsg = new FontRenderable(str)
-    this.mPlayer2SkillMsg.getXform().setPosition(0,30)
+    this.mPlayer2SkillMsg.getXform().setPosition(-5,30)
     this.mPlayer2SkillMsg.setTextHeight(5)
     
 }
@@ -166,11 +166,11 @@ StartGame.prototype.update = function(){
 
     let str = this.mPlayer1.getStateString()
     this.mPlayer1SkillMsg = new FontRenderable(str)
-    this.mPlayer1SkillMsg.getXform().setPosition(0, 35)
+    this.mPlayer1SkillMsg.getXform().setPosition(-5, 35)
     this.mPlayer1SkillMsg.setTextHeight(5)
 
     str = this.mPlayer2.getStateString()
     this.mPlayer2SkillMsg = new FontRenderable(str)
-    this.mPlayer2SkillMsg.getXform().setPosition(0,30)
+    this.mPlayer2SkillMsg.getXform().setPosition(-5,30)
     this.mPlayer2SkillMsg.setTextHeight(5)
 }

@@ -13,6 +13,7 @@ function Obstacle(pos,size,velocity ){
     r.autoSetMass()
     r.setVelocity(velocity[0],velocity[1])
     r.setAngularVelocity(random(1,3))
+    r.setRestitution(0.6)
     this.setRigidBody(r)
     this.mRigidBody = r
 }
@@ -20,7 +21,7 @@ gEngine.Core.inheritPrototype(Obstacle,GameObject)
 
 Obstacle.prototype.obstacleUpdate = function(){
     let r = this.mRigidBody
-    r.mAngularVelocity = r.mAngularVelocity * 0.999
+    r.mAngularVelocity = r.mAngularVelocity * 0.98
 }
 
 Obstacle.prototype.update = function(){

@@ -17,7 +17,7 @@ let Skill = (function(){
     }
     let flexManSkill = function(time,rigidBody){
         if(time>=flexManFrozenTime){
-           
+            rigidBody.setMass(1)
             //alert('speedman')
             return true
         }
@@ -46,7 +46,7 @@ let Skill = (function(){
     }
     let relieveFlexManSkill = function(time,rigidBody){
         if(time>=flexManLastTime){
-           
+            rigidBody.autoSetMass()
             // alert('speedman')
             return true
         }

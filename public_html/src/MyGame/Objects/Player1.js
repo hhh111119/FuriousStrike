@@ -37,7 +37,7 @@ function Player1(spriteTexture,character){
         this.mPlayer.getXform().setSize(5, 5)
         r =  new RigidRectangle(this.getXform(), 5, 5)
         r.setMass(0.5)
-        this.mAcc = 75
+        this.mAcc = 50
         this.mMoveFric = 0.982
         this.mRotFric = 0.98
         this.mPlayer.setColor([1, 1, 0, 1])
@@ -70,11 +70,14 @@ Player1.prototype.getStateString = function(){
     let str = 'Player1:'
     let num = 0
     if(this.mGameCharacter === GameCharacter.BigMan){
+        str += "Backoff"
         num = this.mSkillFrozenTime/Skill.getBigManFrozenTime() * 100
     
     }else if(this.mGameCharacter === GameCharacter.FlexMan){
+        str += "Even Faster"
         num = this.mSkillFrozenTime/Skill.getFlexManFrozenTime() * 100
     }else{
+        str += "Puzzle"
         num = this.mSkillFrozenTime/Skill.getNormalManFrozenTime() * 100
     }
     if(num>100) num =100
@@ -102,7 +105,8 @@ Player1.prototype.update = function () {
                 if(Skill.flexManSkill(this.mSkillFrozenTime,this.getRigidBody())){
                     this.mSkillFrozenTime = 0
                     this.mIsSkilling = true
-                    this.mAcc += 20
+                    this.mAcc += 70
+                    
                 }
             }else{
             //alert('balance man skill')
@@ -133,7 +137,7 @@ Player1.prototype.update = function () {
             if(Skill.relieveFlexManSkill(this.mSkillLastTime,this.getRigidBody())){
                 this.mSkillLastTime = 0
                 this.mIsSkilling = false
-                this.mAcc -= 20
+                this.mAcc -= 70
             }
         }else{
             //alert('balance man skill')
