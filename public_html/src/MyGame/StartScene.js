@@ -20,6 +20,8 @@ function StartScene() {
     this.mMsg1 = null
     this.mMsg2 = null
 
+    this.mMsg3 = null
+
     
 }
 gEngine.Core.inheritPrototype(StartScene, Scene)
@@ -37,18 +39,21 @@ StartScene.prototype.initialize = function () {
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
 
     this.mMsg = new FontRenderable('FURIOUS   STRIKE ')
-    this.mMsg.getXform().setPosition(26, 48)
+    this.mMsg.getXform().setPosition(26, 53)
     this.mMsg.setTextHeight(5)
      
     this.mMsg1 = new FontRenderable('Start Game ')
-    this.mMsg1.getXform().setPosition(26, 40)
+    this.mMsg1.getXform().setPosition(26, 45)
     this.mMsg1.setTextHeight(4)
 
     this.mMsg2 = new FontRenderable('About us ')
-    this.mMsg2.getXform().setPosition(26, 30)
+    this.mMsg2.getXform().setPosition(26, 35)
     this.mMsg2.setTextHeight(2)
+    
 
-  
+    this.mMsg3 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY> ')
+    this.mMsg3.getXform().setPosition(26, 30)
+    this.mMsg3.setTextHeight(2)
     
     
 }
@@ -70,6 +75,7 @@ StartScene.prototype.draw = function () {
 
     this.mMsg1.draw(this.mCamera)
     this.mMsg2.draw(this.mCamera)
+    this.mMsg3.draw(this.mCamera)
     
    
     
