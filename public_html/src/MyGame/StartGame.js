@@ -53,6 +53,8 @@ function StartGame(player1,player2,player1Texture,player2Texture,player1WinTimes
     
     this.mPlayer1WinTimes = player1WinTimes
     this.mPlayer2WinTimes = player2WinTimes
+
+    this.mScoreMsg = null
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
@@ -140,6 +142,14 @@ StartGame.prototype.initialize = function(){
     this.mPlayer2SkillMsg = new FontRenderable(str)
     this.mPlayer2SkillMsg.getXform().setPosition(-18,30)
     this.mPlayer2SkillMsg.setTextHeight(5)
+
+    let scoreStr = ''
+    scoreStr += this.mPlayer1WinTimes
+    scoreStr += ' : '
+    scoreStr += this.mPlayer2WinTimes
+    this.mScoreMsg = new FontRenderable(scoreStr)
+    this.mScoreMsg.getXform().setPosition(-35,32.5)
+    this.mScoreMsg.setTextHeight(5)
     
 }
 
@@ -154,6 +164,7 @@ StartGame.prototype.draw = function(){
     this.mObstacles.draw(this.mCamera)
     this.mPlayer1SkillMsg.draw(this.mCamera)
     this.mPlayer2SkillMsg.draw(this.mCamera)
+    this.mScoreMsg.draw(this.mCamera)
 }
 
 StartGame.prototype.update = function(){
