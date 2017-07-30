@@ -108,6 +108,7 @@ RuleScene.prototype.unloadScene = function() {
     
     
    
-    let next = new  Player1ChooseScene()
+    // let next = new  Player1ChooseScene()
+    let next = new Player1ChooseCharacter()
     gEngine.Core.startScene(next)
 }
