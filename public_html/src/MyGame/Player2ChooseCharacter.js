@@ -44,13 +44,13 @@ Player2ChooseCharacter.prototype.initialize = function () {
     str += this.mCharacters.getCurrentSkinName()
     this.mPlayer2Msg = new FontRenderable(str)
     this.mPlayer2Msg.getXform().setPosition(-30, -5)
-    this.mPlayer2Msg.setTextHeight(8)
+    this.mPlayer2Msg.setTextHeight(6)
 
     let str1 = 'Player1:'
     str1 += this.mPlyer1Name
     this.mPlayer1Msg = new FontRenderable(str1)
     this.mPlayer1Msg.getXform().setPosition(-30, 5)
-    this.mPlayer1Msg.setTextHeight(8)
+    this.mPlayer1Msg.setTextHeight(6)
    
     
     
@@ -85,7 +85,7 @@ Player2ChooseCharacter.prototype.update = function () {
     this.mPlayer2Msg = new FontRenderable(str)
     this.mPlayer2Msg.getXform().setPosition(-30, -5)
     //this.mPlayer1Msg.getXform().setSize(100,100)
-    this.mPlayer2Msg.setTextHeight(8)
+    this.mPlayer2Msg.setTextHeight(6)
     
     
 }

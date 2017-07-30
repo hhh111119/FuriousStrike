@@ -42,11 +42,11 @@ Player1ChooseCharacter.prototype.initialize = function () {
     str += this.mCharacters.getCurrentSkinName()
     this.mPlayer1Msg = new FontRenderable(str)
     this.mPlayer1Msg.getXform().setPosition(-30, 5)
-    this.mPlayer1Msg.setTextHeight(8)
+    this.mPlayer1Msg.setTextHeight(6)
 
     this.mPlayer2Msg = new FontRenderable('Plater2:Waiting')
     this.mPlayer2Msg.getXform().setPosition(-30, -5)
-    this.mPlayer2Msg.setTextHeight(8)
+    this.mPlayer2Msg.setTextHeight(6)
    
     
     
@@ -81,7 +81,7 @@ Player1ChooseCharacter.prototype.update = function () {
     this.mPlayer1Msg = new FontRenderable(str)
     this.mPlayer1Msg.getXform().setPosition(-30, 5)
     //this.mPlayer1Msg.getXform().setSize(100,100)
-    this.mPlayer1Msg.setTextHeight(8)
+    this.mPlayer1Msg.setTextHeight(6)
     
     
 }
