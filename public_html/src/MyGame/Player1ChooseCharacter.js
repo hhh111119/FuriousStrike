@@ -18,8 +18,10 @@ function Player1ChooseCharacter() {
 
     
    
-    this.mMsg = null
+    this.mPlayer1Msg = null
+    this.mPlayer2Msg = null
     this.mCharacters = null
+    this.mFontCamera = null
 
     
 }
@@ -29,10 +31,23 @@ Player1ChooseCharacter.prototype.initialize = function () {
    
     
     //this.mMsg = new FontRenderable(this.mResult)
+    this.mFontCamera = new Camera(
+        vec2.fromValues(0, 0), // position of the camera
+        100,                     // width of camera
+        [0, 300, 650, 200]         // viewport (orgX, orgY, width, height)
+    )
+    this.mFontCamera.setBackgroundColor([0.9, 0.9, 0.9, 1])
     this.mCharacters = new SkinObjects()
-    // this.mMsg.getXform().setPosition(26, 68)
-    // this.mMsg.setTextHeight(5)
-    //this.mMsg.draw(this.mCamera)
+    let str = 'Player1:'
+    str += this.mCharacters.getCurrentSkinName()
+    this.mPlayer1Msg = new FontRenderable(str)
+    this.mPlayer1Msg.getXform().setPosition(-30, 5)
+    this.mPlayer1Msg.setTextHeight(8)
+
+    this.mPlayer2Msg = new FontRenderable('Plater2:Waiting')
+    this.mPlayer2Msg.getXform().setPosition(-30, -5)
+    this.mPlayer2Msg.setTextHeight(8)
+   
     
     
 }
@@ -44,7 +59,10 @@ Player1ChooseCharacter.prototype.draw = function () {
     
     this.mCharacters.draw()
     
-    
+    this.mFontCamera.setupViewProjection()
+   
+    this.mPlayer1Msg.draw(this.mFontCamera)
+    this.mPlayer2Msg.draw(this.mFontCamera)
   
     //this.mMsg.draw(this.mCamera)
     
@@ -58,6 +76,12 @@ Player1ChooseCharacter.prototype.update = function () {
         gEngine.GameLoop.stop()
     this.mCharacters.updateForPlayer1 ()
     
+    let str = 'Player1:'
+    str += this.mCharacters.getCurrentSkinName()
+    this.mPlayer1Msg = new FontRenderable(str)
+    this.mPlayer1Msg.getXform().setPosition(-30, 5)
+    //this.mPlayer1Msg.getXform().setSize(100,100)
+    this.mPlayer1Msg.setTextHeight(8)
     
     
 }
@@ -76,6 +100,6 @@ Player1ChooseCharacter.prototype.unloadScene = function() {
         let texture = gSkinAssets[path]
         gEngine.Textures.unloadTexture(texture)
     }
-    let next = new StartScene()
+    let next = new Player1ChooseScene(this.mCharacters.getCurrentSkinPath())
     gEngine.Core.startScene(next)
 }

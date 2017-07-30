@@ -37,7 +37,7 @@ CharacterInfo.prototype.draw = function(camera){
 }
 
 CharacterInfo.prototype.setName = function(name, size, pos){
-    let str = 'Name: '
+    let str = 'Type: '
     str += name
     this.mName = new FontRenderable(str)
     this.mName.getXform().setPosition(pos[0], pos[1])
@@ -80,9 +80,9 @@ CharacterInfo.prototype.setFeature = function(feature, size, pos){
     this.mFeature.setTextHeight(size)
 }
 
-CharacterInfo.prototype.setColor = function(color,size,pos){
-    this.mColor = new Renderable()
-    this.mColor.setColor(color)
+CharacterInfo.prototype.setColor = function(path,size,pos){
+    this.mColor = new SpriteRenderable(path)
+    //this.mColor.setColor(color)
     let xf = this.mColor.getXform()
     xf.setPosition(pos[0],pos[1])
     xf.setSize(size[0],size[1])

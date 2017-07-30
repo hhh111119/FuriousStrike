@@ -66,9 +66,9 @@ function SkinObjects(){
     this.mMiniCamera =  new Camera(
         vec2.fromValues(0, 0), // position of the camera
         90       ,              // width of camera
-        [200, 300, 100, 100]         // viewport (orgX, orgY, width, height)
+        [650, 300, 200, 200]         // viewport (orgX, orgY, width, height)
     )
-
+    this.mMiniCamera.setBackgroundColor([0.9,0.9,0.9,1])
     //initialize 
     let i = 0
     const rowXPos = -450
@@ -101,6 +101,26 @@ function SkinObjects(){
             skin.getXform().setSize(60,60)
         }
         this.mSkinSets.push(skin)
+        i++
+    }
+}
+
+SkinObjects.prototype.getCurrentSkinName = function(){
+    let i = 0
+    for(let skin in gSkinAssets){
+        if(this.mCurrentPos === i){
+            return skin.toString()
+        }
+        i++
+    }
+}
+
+SkinObjects.prototype.getCurrentSkinPath = function(){
+    let i = 0
+    for(let skin in gSkinAssets){
+        if(this.mCurrentPos === i){
+            return gSkinAssets[skin].toString()
+        }
         i++
     }
 }
