@@ -13,8 +13,8 @@
 //    limitations under the License.
 
 function Player2(spriteTexture,character){
-    // this.mPlayer = new SpriteRenderable(spriteTexture)
-    this.mPlayer = new Renderable()
+    this.mPlayer = new SpriteRenderable(spriteTexture)
+    //this.mPlayer = new Renderable()
     this.mPlayer.setColor([1, 0, 1, 0])
     this.mPlayer.getXform().setPosition(30, 15)
     // this.mPlayer.getXform().setSize(8, 8)
@@ -36,7 +36,7 @@ function Player2(spriteTexture,character){
         this.mAcc = 18 
         this.mMoveFric = 0.993
         this.mRotFric = 0.97
-        this.mPlayer.setColor([0, 0, 1, 1])
+      //  this.mPlayer.setColor([0, 0, 1, 1])
     }else if(character === GameCharacter.FlexMan){
         this.mPlayer.getXform().setSize(5, 5)
         r =  new RigidRectangle(this.getXform(), 5, 5)
@@ -44,7 +44,7 @@ function Player2(spriteTexture,character){
         this.mAcc = 50
         this.mMoveFric = 0.982
         this.mRotFric = 0.98
-        this.mPlayer.setColor([0, 1, 0, 1])
+       // this.mPlayer.setColor([0, 1, 0, 1])
     }else{
         this.mPlayer.getXform().setSize(8, 8)
         r =  new RigidRectangle(this.getXform(), 8, 8)
@@ -54,7 +54,7 @@ function Player2(spriteTexture,character){
         this.mMoveFric = 0.991
         this.mRotFric = 0.991
         // r.setMass(1)
-        this.mPlayer.setColor([0, 1, 1, 1])
+      //  this.mPlayer.setColor([0, 1, 1, 1])
        
     }
     this.setRigidBody(r)

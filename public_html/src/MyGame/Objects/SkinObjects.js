@@ -171,3 +171,36 @@ SkinObjects.prototype.updateForPlayer1 = function(){
     this.mSkinSets[this.mCurrentPos].getXform().setSize(90,90)
 }
 
+SkinObjects.prototype.updateForPlayer2 = function(){
+    this.mSkinSets[this.mCurrentPos].getXform().setSize(60,60)
+    if(gEngine.Input.isKeyClicked(gEngine.Input.keys.I)){
+        if(this.mCurrentPos<10){
+            this.mCurrentPos += 20
+        }else{
+            this.mCurrentPos -= 10
+        }
+    }
+    if(gEngine.Input.isKeyClicked(gEngine.Input.keys.J)){
+        if((this.mCurrentPos % 10) === 0 ){
+            this.mCurrentPos += 9
+        }else{
+            this.mCurrentPos -= 1
+        }
+    }
+    if(gEngine.Input.isKeyClicked(gEngine.Input.keys.K)){
+        if(this.mCurrentPos>19){
+            this.mCurrentPos -= 20
+        }else{
+            this.mCurrentPos += 10
+        }
+    }
+    if(gEngine.Input.isKeyClicked(gEngine.Input.keys.L)){
+        if((this.mCurrentPos % 10)===9){
+            this.mCurrentPos -= 9
+        }else{
+            this.mCurrentPos += 1
+        }
+    }
+    this.mSkinSets[this.mCurrentPos].getXform().setSize(90,90)
+}
+

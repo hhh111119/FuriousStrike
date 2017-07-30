@@ -14,9 +14,11 @@
 
 'use strict'
 
-function Player1ChooseCharacter() {
+function Player2ChooseCharacter(plyer1Name,player1Character,player1Texture) {
 
-    
+    this.mPlyer1Name = plyer1Name
+    this.mPlayer1Character = player1Character
+    this.mPlayer1Texture = player1Texture
    
     this.mPlayer1Msg = null
     this.mPlayer2Msg = null
@@ -25,9 +27,9 @@ function Player1ChooseCharacter() {
 
     
 }
-gEngine.Core.inheritPrototype(Player1ChooseCharacter, Scene)
+gEngine.Core.inheritPrototype(Player2ChooseCharacter, Scene)
 
-Player1ChooseCharacter.prototype.initialize = function () {
+Player2ChooseCharacter.prototype.initialize = function () {
    
     
     //this.mMsg = new FontRenderable(this.mResult)
@@ -38,21 +40,23 @@ Player1ChooseCharacter.prototype.initialize = function () {
     )
     this.mFontCamera.setBackgroundColor([0.9, 0.9, 0.9, 1])
     this.mCharacters = new SkinObjects()
-    let str = 'Player1:'
+    let str = 'Player2:'
     str += this.mCharacters.getCurrentSkinName()
-    this.mPlayer1Msg = new FontRenderable(str)
-    this.mPlayer1Msg.getXform().setPosition(-30, 5)
-    this.mPlayer1Msg.setTextHeight(8)
-
-    this.mPlayer2Msg = new FontRenderable('Plater2:Waiting')
+    this.mPlayer2Msg = new FontRenderable(str)
     this.mPlayer2Msg.getXform().setPosition(-30, -5)
     this.mPlayer2Msg.setTextHeight(8)
+
+    let str1 = 'Player1:'
+    str1 += this.mPlyer1Name
+    this.mPlayer1Msg = new FontRenderable(str1)
+    this.mPlayer1Msg.getXform().setPosition(-30, 5)
+    this.mPlayer1Msg.setTextHeight(8)
    
     
     
 }
 
-Player1ChooseCharacter.prototype.draw = function () {
+Player2ChooseCharacter.prototype.draw = function () {
     // Step A: clear the canvas
     gEngine.Core.clearCanvas([0.9, 0.9, 0.9, 1.0]) // clear to light gray
     
@@ -69,25 +73,25 @@ Player1ChooseCharacter.prototype.draw = function () {
     
     
 }
-Player1ChooseCharacter.prototype.update = function () {
+Player2ChooseCharacter.prototype.update = function () {
     
     // select which character to work with
     if (gEngine.Input.isKeyClicked(gEngine.Input.keys.Space))
         gEngine.GameLoop.stop()
-    this.mCharacters.updateForPlayer1 ()
+    this.mCharacters.updateForPlayer2()
     
-    let str = 'Player1:'
+    let str = 'Player2:'
     str += this.mCharacters.getCurrentSkinName()
-    this.mPlayer1Msg = new FontRenderable(str)
-    this.mPlayer1Msg.getXform().setPosition(-30, 5)
+    this.mPlayer2Msg = new FontRenderable(str)
+    this.mPlayer2Msg.getXform().setPosition(-30, -5)
     //this.mPlayer1Msg.getXform().setSize(100,100)
-    this.mPlayer1Msg.setTextHeight(8)
+    this.mPlayer2Msg.setTextHeight(8)
     
     
 }
 
 /* global gSkinAssets*/
-Player1ChooseCharacter.prototype.loadScene = function () {
+Player2ChooseCharacter.prototype.loadScene = function () {
     //gEngine.Textures.loadTexture(this.kPlayer1Texture)
     for(let path in gSkinAssets){
         let texture = gSkinAssets[path]
@@ -95,11 +99,11 @@ Player1ChooseCharacter.prototype.loadScene = function () {
     }
 }
 
-Player1ChooseCharacter.prototype.unloadScene = function() {
+Player2ChooseCharacter.prototype.unloadScene = function() {
     for(let path in gSkinAssets){
         let texture = gSkinAssets[path]
         gEngine.Textures.unloadTexture(texture)
     }
-    let next = new Player1ChooseScene(this.mCharacters.getCurrentSkinPath(),this.mCharacters.getCurrentSkinName())
+    let next = new Player2ChooseScene(this.mPlayer1Character,this.mCharacters.getCurrentSkinPath(),this.mPlayer1Texture,this.mPlyer1Name)
     gEngine.Core.startScene(next)
 }

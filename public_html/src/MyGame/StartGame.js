@@ -19,12 +19,12 @@
 
 'use strict'
 /*global gEngine*/ 
-function StartGame(player1,player2){
+function StartGame(player1,player2,player1Texture,player2Texture){
     //this.kMinionSprite = 'assets/minion_sprite.png'
     //this.kPlatformTexture = 'assets/platform.png'
     //this.kWallTexture = 'assets/wall.png'
-    this.kPlayer1Texture = 'assets/target.png'
-    this.kPlayer2Texture = 'assets/favicon.png'
+    this.kPlayer1Texture = player1Texture
+    this.kPlayer2Texture = player2Texture
 
     this.mCamera = null
     this.mGamePlayers = null

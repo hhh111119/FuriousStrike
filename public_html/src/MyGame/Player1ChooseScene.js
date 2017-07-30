@@ -22,7 +22,7 @@ const GameCharacter = {
 
 
 
-function Player1ChooseScene(skin) {
+function Player1ChooseScene(skin,name) {
 
     
     this.mCamera = null
@@ -36,6 +36,7 @@ function Player1ChooseScene(skin) {
     this.mMsg1 = null
 
     this.mPlayer1Skin = skin
+    this.mPlayer1Name = name
     // console.log(skin);
     
     
@@ -170,6 +171,6 @@ Player1ChooseScene.prototype.unloadScene = function() {
     
     
     gEngine.Textures.unloadTexture(this.mPlayer1Skin)
-    let next = new Player2ChooseScene(this.mPlayer1GameCharacter)
+    let next = new Player2ChooseCharacter(this.mPlayer1Name,this.mPlayer1GameCharacter,this.mPlayer1Skin,)
     gEngine.Core.startScene(next)
 }
