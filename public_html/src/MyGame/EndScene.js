@@ -18,14 +18,22 @@
 
 
 
-function EndScene(result) {
+function EndScene(result,lose,isPlayer1Win,player1Character,player2Character) {
 
     
     this.mCamera = null
     this.mMsg = null
     this.mResult = result
+    this.mMsgWin = null
+    this.mMsg1 = null
+    this.mMsg2 = null
 
-    
+    this.mIsRestart = false
+    this.mLose = lose
+    this.mIsPlayer1Win = isPlayer1Win
+
+    this.mPlayer1Character = player1Character
+    this.mPlayer2Character = player2Character
 }
 gEngine.Core.inheritPrototype(EndScene, Scene)
 
@@ -34,18 +42,33 @@ EndScene.prototype.initialize = function () {
     // gEngine.ResourceMap.store('Save', [0,0,0,0])
     // Step A: set up the cameras
     this.mCamera = new Camera(
-        vec2.fromValues(50, 50), // position of the camera
-        100,                        // width of camera
+        vec2.fromValues(0, 0), // position of the camera
+        1000,                        // width of camera
         [0, 0, 1000, 500],         // viewport (orgX, orgY, width, height)
         2
     )
     this.mCamera.setBackgroundColor([0.9, 0.9, 0.9, 1])
 
-    this.mMsg = new FontRenderable(this.mResult)
+    this.mMsg = new SpriteRenderable(this.mResult)
 
-    this.mMsg.getXform().setPosition(26, 68)
-    this.mMsg.setTextHeight(5)
+  
+    this.mMsg.setColor([1, 1, 1, 0])
+    this.mMsg.getXform().setPosition(-220, 50)
+    this.mMsg.getXform().setSize(200,200)
     this.mMsg.draw(this.mCamera)
+
+    this.mMsg1 = new FontRenderable('Reselect ')
+    this.mMsg1.getXform().setPosition(0, 55)
+    this.mMsg1.setTextHeight(50)
+
+    this.mMsg2 = new FontRenderable('Restart')
+    this.mMsg2.getXform().setPosition(0, 20)
+    this.mMsg2.setTextHeight(40)
+    
+
+    this.mMsg3 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY> ')
+    this.mMsg3.getXform().setPosition(26, 30)
+    this.mMsg3.setTextHeight(2)
     
     
   
@@ -63,19 +86,12 @@ EndScene.prototype.draw = function () {
     
   
     this.mMsg.draw(this.mCamera)
+    this.mMsg1.draw(this.mCamera)
+    this.mMsg2.draw(this.mCamera)
     
     
     
     
-   
-    
-    
-    
-    
-    
-
-  
-  
    
 }
 EndScene.prototype.update = function () {
@@ -83,6 +99,20 @@ EndScene.prototype.update = function () {
     // select which character to work with
     if (gEngine.Input.isKeyClicked(gEngine.Input.keys.Space))
         gEngine.GameLoop.stop()
+    if (gEngine.Input.isKeyClicked(gEngine.Input.keys.Up)){
+        this.mIsRestart = (!this.mIsRestart)
+    }
+        
+    if (gEngine.Input.isKeyClicked(gEngine.Input.keys.Down))
+        this.mIsRestart = (!this.mIsRestart)
+
+    if(this.mIsRestart === true){
+        this.mMsg2.setTextHeight(50)
+        this.mMsg1.setTextHeight(40)
+    }else{
+        this.mMsg1.setTextHeight(50)
+        this.mMsg2.setTextHeight(40)
+    }
     
     
     
@@ -90,13 +120,22 @@ EndScene.prototype.update = function () {
 }
 
 EndScene.prototype.loadScene = function () {
-   
+    gEngine.Textures.loadTexture(this.mResult)
 }
 
 EndScene.prototype.unloadScene = function() {
     
+    gEngine.Textures.unloadTexture(this.mResult)
+    let next = null
+    if(this.mIsRestart === true){
+        if(this.mIsPlayer1Win === true){
+            next = new StartGame(this.mPlayer1Character,this.mPlayer2Character,this.mResult,this.mLose)
+        }else{
+            next = new StartGame(this.mPlayer1Character,this.mPlayer2Character,this.mLose,this.mResult)
+        }
+    }else{
+        next = new Player1ChooseCharacter()
+    }
     
-   
-    let next = new StartScene()
     gEngine.Core.startScene(next)
 }

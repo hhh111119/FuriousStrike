@@ -85,11 +85,11 @@ StartGame.prototype.unloadScene = function () {
     canvas.height = '500'
     let next = null
     if(this.mPlayer1WinTimes === 3){
-        this.mResult = 'Player1 Wins'
-        next = new EndScene(this.mResult)
+        this.mResult = this.kPlayer1Texture
+        next = new EndScene(this.mResult,this.kPlayer2Texture,true,this.mPlayer1Character,this.mPlayer2Character)
     }else if(this.mPlayer2WinTimes === 3){
-        this.mResult = 'Player2 Wins'
-        next = new EndScene(this.mResult)
+        this.mResult = this.kPlayer2Texture
+        next = new EndScene(this.mResult,this.kPlayer1Texture,false,this.mPlayer1Character,this.mPlayer2Character)
     }else{
         next = new StartGame(this.mPlayer1Character,this.mPlayer2Character,this.kPlayer1Texture,this.kPlayer2Texture,
             this.mPlayer1WinTimes,this.mPlayer2WinTimes)
