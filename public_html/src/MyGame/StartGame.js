@@ -19,7 +19,7 @@
 
 'use strict'
 /*global gEngine*/ 
-function StartGame(player1,player2,player1Texture,player2Texture){
+function StartGame(player1,player2,player1Texture,player2Texture,player1WinTimes = 0, player2WinTimes = 0){
     //this.kMinionSprite = 'assets/minion_sprite.png'
     //this.kPlatformTexture = 'assets/platform.png'
     //this.kWallTexture = 'assets/wall.png'
@@ -50,7 +50,9 @@ function StartGame(player1,player2,player1Texture,player2Texture){
 
     this.mPlayer1SkillMsg = null
     this.mPlayer2SkillMsg = null
-
+    
+    this.mPlayer1WinTimes = player1WinTimes
+    this.mPlayer2WinTimes = player2WinTimes
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
@@ -79,7 +81,17 @@ StartGame.prototype.unloadScene = function () {
     let canvas = document.getElementById('GLCanvas')
     canvas.width = '1000'
     canvas.height = '500'
-    let next = new EndScene(this.mResult)
+    let next = null
+    if(this.mPlayer1WinTimes === 3){
+        this.mResult = 'Player1 Wins'
+        next = new EndScene(this.mResult)
+    }else if(this.mPlayer2WinTimes === 3){
+        this.mResult = 'Player2 Wins'
+        next = new EndScene(this.mResult)
+    }else{
+        next = new StartGame(this.mPlayer1Character,this.mPlayer2Character,this.kPlayer1Texture,this.kPlayer2Texture,
+            this.mPlayer1WinTimes,this.mPlayer2WinTimes)
+    }
     gEngine.Core.startScene(next)
    
 }
@@ -167,26 +179,33 @@ StartGame.prototype.update = function(){
     let pos2 = this.mPlayer2.getXform().getPosition()
     let boundSize = this.mGameArea.getXform().getSize()
     if(pos1[0]>boundSize[0]/2 || pos1[0]<-boundSize[0]/2){
-        this.mResult = 'player2 wins'
+        //this.mResult = 'player2 wins'
+        this.mPlayer2WinTimes += 1
+        gEngine.GameLoop.stop()
       
     }else if(pos2[0]>boundSize[0]/2|| pos2[0]<-boundSize[0]/2){
-        this.mResult = 'player1 wins'
-       
+        // this.mResult = 'player1 wins'
+        this.mPlayer1WinTimes += 1
+        gEngine.GameLoop.stop()
        
     } else if(pos1[1]>boundSize[1]/2  || pos1[1]<-boundSize[1]/2 ){
-        this.mResult = 'player2 wins'
+        // this.mResult = 'player2 wins'
+        this.mPlayer2WinTimes += 1
+        gEngine.GameLoop.stop()
         
     } else if(pos2[1]>boundSize[1] /2 || pos2[1]<-boundSize[1] /2 ){
-        this.mResult = 'player1 wins'
+        //this.mResult = 'player1 wins'
+        this.mPlayer1WinTimes += 1
+        gEngine.GameLoop.stop()
     }
 
-    if(this.mResult !== null){
+    /*   if(this.mResult !== null){
         //CameraShake(state, xDelta, yDelta, shakeFrequency, shakeDuration)
         //let shake = new CameraShake(this.mCamera,1,1,1,2)
         //this.mCamera.shake(1,1,1,1000)
       
-        gEngine.GameLoop.stop()
-    }
+       // gEngine.GameLoop.stop()
+    }*/
     let str = this.mPlayer1.getStateString()
     this.mPlayer1SkillMsg = new FontRenderable(str)
     this.mPlayer1SkillMsg.getXform().setPosition(-18, 35)
