@@ -22,7 +22,11 @@ function AboutScene() {
     
     this.mCamera = null
     this.mMsg = null
-   
+    this.mGithubMsg = null
+    this.mGithubPic = null
+    this.mReferenceMsg = null
+    this.mQRTexture = 'assets/QR.png'
+    this.mHintMsg = null
     
 }
 gEngine.Core.inheritPrototype(AboutScene, Scene)
@@ -30,18 +34,32 @@ gEngine.Core.inheritPrototype(AboutScene, Scene)
 AboutScene.prototype.initialize = function () {
     
     this.mCamera = new Camera(
-        vec2.fromValues(50, 50), // position of the camera
-        100,                        // width of camera
+        vec2.fromValues(0, 0), // position of the camera
+        1000,                        // width of camera
         [0, 0, 1000, 500],         // viewport (orgX, orgY, width, height)
         2
     )
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
 
-    this.mMsg = new FontRenderable('To Do %..... ')
-    this.mMsg.getXform().setPosition(26, 48)
-    this.mMsg.setTextHeight(5)
-     
+    this.mMsg = new FontRenderable('Member: ChenYiXiu XieJinChi ChenXinHao   ')
+    this.mMsg.getXform().setPosition(-300, 200)
+    this.mMsg.setTextHeight(20)
+
+    this.mGithubMsg = new FontRenderable('Github: https://github.com/hhh111119/FuriousStrike')
+    this.mGithubMsg.getXform().setPosition(-300,170)
+    this.mGithubMsg.setTextHeight(20)
+
+    this.mGithubPic = new SpriteRenderable('assets/QR.png')
+    this.mGithubPic.getXform().setPosition(-258,70)
+    this.mGithubPic.getXform().setSize(100,100)
    
+    this.mReferenceMsg = new FontRenderable('Some resource source: wwww.ui.cn')
+    this.mReferenceMsg.getXform().setPosition(-300,0)
+    this.mReferenceMsg.setTextHeight(20)
+
+    this.mHintMsg = new FontRenderable('<PRESS SPACE BAR BACK>')
+    this.mHintMsg.getXform().setPosition(-300, -50)
+    this.mHintMsg.setTextHeight(30)
   
     
     
@@ -57,6 +75,10 @@ AboutScene.prototype.draw = function () {
     
   
     this.mMsg.draw(this.mCamera)
+    this.mGithubMsg.draw(this.mCamera)
+    this.mGithubPic.draw(this.mCamera)
+    this.mReferenceMsg.draw(this.mCamera)
+    this.mHintMsg.draw(this.mCamera)
     
     
     
@@ -72,13 +94,13 @@ AboutScene.prototype.update = function () {
 }
 
 AboutScene.prototype.loadScene = function () {
-   
+    gEngine.Textures.loadTexture(this.mQRTexture)
 }
 
 AboutScene.prototype.unloadScene = function() {
     
     
-   
+    gEngine.Textures.unloadTexture(this.mQRTexture)
     let next = new StartScene()
     gEngine.Core.startScene(next)
 }

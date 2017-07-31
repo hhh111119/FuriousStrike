@@ -64,7 +64,7 @@ RuleScene.prototype.initialize = function () {
     this.mPlayer2Control = new FontRenderable('Control: I J K L')
     this.mPlayer2Control.getXform().setPosition(26,33)
     this.mPlayer2Control.setTextHeight(5)
-    this.mPlayer2Skill = new FontRenderable('Skill key: O')
+    this.mPlayer2Skill = new FontRenderable('Skill key: U')
     this.mPlayer2Skill.getXform().setPosition(26,28)
     this.mPlayer2Skill.setTextHeight(5)
     

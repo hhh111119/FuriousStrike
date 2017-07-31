@@ -226,4 +226,6 @@ StartGame.prototype.update = function(){
     this.mPlayer2SkillMsg = new FontRenderable(str)
     this.mPlayer2SkillMsg.getXform().setPosition(-18,30)
     this.mPlayer2SkillMsg.setTextHeight(5)
+
+    
 }
