@@ -44,21 +44,21 @@ ChoosePlayground.prototype.initialize = function () {
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
 
     this.mMsg = new FontRenderable('Choose a arena ')
-    this.mMsg.getXform().setPosition(-100, 200)
+    this.mMsg.getXform().setPosition(-300, 200)
     this.mMsg.setTextHeight(70)
 
     this.mPlayground1 = new FontRenderable('Kennel')
-    this.mPlayground1.getXform().setPosition(-100, 100)
+    this.mPlayground1.getXform().setPosition(-200, 100)
     this.mPlayground1.setTextHeight(60)
 
     this.mPlayground2 = new FontRenderable('Minions')
-    this.mPlayground2.getXform().setPosition(-100,0)
+    this.mPlayground2.getXform().setPosition(-200,0)
     this.mPlayground2.setTextHeight(40)
 
  
    
     this.mPlayground3 = new FontRenderable('PokeBall')
-    this.mPlayground3.getXform().setPosition(-100,-100)
+    this.mPlayground3.getXform().setPosition(-200,-100)
     this.mPlayground3.setTextHeight(40)
 
     this.mPlaygroundSet.push(this.mPlayground1)
@@ -66,7 +66,7 @@ ChoosePlayground.prototype.initialize = function () {
     this.mPlaygroundSet.push(this.mPlayground3)
 
     this.mMsg1 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY> ')
-    this.mMsg1.getXform().setPosition(-100, -150)
+    this.mMsg1.getXform().setPosition(-300, -150)
     this.mMsg1.setTextHeight(20)
 
   

@@ -43,9 +43,9 @@ RuleScene.prototype.initialize = function () {
     )
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
 
-    this.mMsg = new FontRenderable('To Do %..... ')
-    this.mMsg.getXform().setPosition(26, 48)
-    this.mMsg.setTextHeight(5)
+    this.mMsg = new FontRenderable('For better experience Press F11')
+    this.mMsg.getXform().setPosition(15, 65)
+    this.mMsg.setTextHeight(4)
 
    
     this.mPlayer1 = new FontRenderable('Player1')
@@ -84,7 +84,7 @@ RuleScene.prototype.draw = function () {
     this.mPlayer2Control.draw(this.mCamera)
     this.mPlayer2Skill.draw(this.mCamera)
     
-  
+    this.mMsg.draw(this.mCamera)
    
     
     

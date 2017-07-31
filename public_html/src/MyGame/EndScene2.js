@@ -43,6 +43,7 @@ EndScene2.prototype.initialize = function () {
     // gEngine.DefaultResources.setGlobalAmbientColor([1, 1, 1, 1])
     // gEngine.ResourceMap.store('Save', [0,0,0,0])
     // Step A: set up the cameras
+    document.getElementById('game-contain').style.border='20px groove #666666'
     this.mCamera = new Camera(
         vec2.fromValues(0, 0), // position of the camera
         1000,                        // width of camera
@@ -81,7 +82,7 @@ EndScene2.prototype.initialize = function () {
         this.mWhoWinMsg =new FontRenderable('Player2 Wins')
     }
     
-    this.mWhoWinMsg.getXform().setPosition(-220,170)
+    this.mWhoWinMsg.getXform().setPosition(-300,170)
     this.mWhoWinMsg.setTextHeight(30)
   
     

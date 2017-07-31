@@ -57,6 +57,9 @@ function StartGame(player1,player2,player1Texture,player2Texture,player1WinTimes
     this.mScoreMsg = null
 
     this.mBackgroundTexture = 'assets/map1.png'
+
+
+
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
@@ -102,14 +105,25 @@ StartGame.prototype.unloadScene = function () {
    
 }
 
+
+
+
 StartGame.prototype.initialize = function(){
+    
+    
+    
+
     let canvas = document.getElementById('GLCanvas')
     canvas.width = '1200'
-    canvas.height = '1000'
+    canvas.height = '850'
+    document.getElementById('game-contain').style.border='0px groove #666666'
+   
+
+
     this.mCamera = new Camera(
         vec2.fromValues(0, 0), // position of the camera
         100,                     // width of camera
-        [100, 200, 1000, 800]         // viewport (orgX, orgY, width, height)
+        [0, 50, 1000, 800]         // viewport (orgX, orgY, width, height)
     )
 
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
@@ -158,14 +172,15 @@ StartGame.prototype.initialize = function(){
 }
 
 StartGame.prototype.draw = function(){
-
+  
+   
     gEngine.Core.clearCanvas([1, 1, 1, 1.0]) // clear to light gray
    
     this.mCamera.setupViewProjection()
     this.mGameArea.draw(this.mCamera)
     this.mGamePlayers.draw(this.mCamera)
     // this.mBoundSet.draw(this.mCamera)
-   // this.mObstacles.draw(this.mCamera)
+    // this.mObstacles.draw(this.mCamera)
     this.mPlayer1SkillMsg.draw(this.mCamera)
     this.mPlayer2SkillMsg.draw(this.mCamera)
     this.mScoreMsg.draw(this.mCamera)

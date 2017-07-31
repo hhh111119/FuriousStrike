@@ -15,10 +15,37 @@
 -->
 
 <!DOCTYPE html>
-<html>
+<html >
     <head>
         <title>furious strike </title>
-        <link rel ="icon" type ="image/x-icon" href="./assets/favicon.png">
+        <link rel ="icon" type ="image/x-icon" href="./assets/icon.PNG">
+         <style>
+    ::selection{
+        background-color:#eee;
+    }
+    body{
+        background:linear-gradient(to right, #ffffff, #ffffff);
+        color:aliceblue;
+    }
+  #game{
+        width:1000px;
+        height:auto;
+        margin:50px auto;
+        text-align:center;
+ }
+    #game-contain{
+        display: inline-table;
+        border:20px groove #666666;
+        border-radius: 5px;
+    }
+    #game-name::before,#game-name::after{
+        content:"";
+        display:inline-block;
+        height: 20px;
+        width:400px;
+        background-color:aliceblue;
+    }
+    </style>
 
         <!-- the following says there are javascript source code contained in 
              the external source files
@@ -114,18 +141,27 @@
         <script type="text/javascript" src="src/MyGame/Objects/Obstacle.js"></script>
         <script type="text/javascript" src="src/MyGame/Objects/Skill.js"></script>
         <script type="text/javascript" src="src/MyGame/Objects/SkinObjects.js"></script>
+
+        <script type="text/javascript" src="src/Fullscreen.js"></script>
        
-      
     </head>
 
-    <body onload="
+
+    <body id="content" onload="
         var myGame = new StartScene();
         gEngine.Core.initializeEngineCore('GLCanvas', myGame);
      ">
-        <canvas id="GLCanvas" width="   1000" height="500">
-            <!-- GLCanvas is the area we will draw in: a 640x480 area. -->
-            Your browser does not support the HTML5 canvas.
-            <!-- this message will show only if WebGL clearing failed -->
-        </canvas>
+    <div id="test">
+    <div id="game">
+        <div id="game-contain">
+            <canvas id="GLCanvas" width="1000" height="500">
+                <!-- GLCanvas is the area we will draw in: a 640x480 area. -->
+                Your browser does not support the HTML5 canvas.
+                <!-- this message will show only if WebGL clearing failed -->
+            </canvas>
+        </div>
+     </div>
+    </div>
     </body>
+ 
 </html>
