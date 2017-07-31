@@ -17,7 +17,7 @@
 
 
 
-function EndScene2(result,lose,isPlayer1Win,player1Character,player2Character) {
+function EndScene3(result,lose,isPlayer1Win,player1Character,player2Character) {
 
     
     this.mCamera = null
@@ -34,9 +34,9 @@ function EndScene2(result,lose,isPlayer1Win,player1Character,player2Character) {
     this.mPlayer1Character = player1Character
     this.mPlayer2Character = player2Character
 }
-gEngine.Core.inheritPrototype(EndScene2, Scene)
+gEngine.Core.inheritPrototype(EndScene3, Scene)
 
-EndScene2.prototype.initialize = function () {
+EndScene3.prototype.initialize = function () {
     // gEngine.DefaultResources.setGlobalAmbientColor([1, 1, 1, 1])
     // gEngine.ResourceMap.store('Save', [0,0,0,0])
     // Step A: set up the cameras
@@ -75,7 +75,7 @@ EndScene2.prototype.initialize = function () {
     
 }
 
-EndScene2.prototype.draw = function () {
+EndScene3.prototype.draw = function () {
     // Step A: clear the canvas
     gEngine.Core.clearCanvas([0.9, 0.9, 0.9, 1.0]) // clear to light gray
     
@@ -93,7 +93,7 @@ EndScene2.prototype.draw = function () {
     
    
 }
-EndScene2.prototype.update = function () {
+EndScene3.prototype.update = function () {
     
     // select which character to work with
     if (gEngine.Input.isKeyClicked(gEngine.Input.keys.Space))
@@ -118,19 +118,19 @@ EndScene2.prototype.update = function () {
     
 }
 
-EndScene2.prototype.loadScene = function () {
+EndScene3.prototype.loadScene = function () {
     gEngine.Textures.loadTexture(this.mResult)
 }
 
-EndScene2.prototype.unloadScene = function() {
+EndScene3.prototype.unloadScene = function() {
     
     gEngine.Textures.unloadTexture(this.mResult)
     let next = null
     if(this.mIsRestart === true){
         if(this.mIsPlayer1Win === true){
-            next = new StartGame2(this.mPlayer1Character,this.mPlayer2Character,this.mResult,this.mLose)
+            next = new StartGame3(this.mPlayer1Character,this.mPlayer2Character,this.mResult,this.mLose)
         }else{
-            next = new StartGame2(this.mPlayer1Character,this.mPlayer2Character,this.mLose,this.mResult)
+            next = new StartGame3(this.mPlayer1Character,this.mPlayer2Character,this.mLose,this.mResult)
         }
     }else{
         next = new Player1ChooseCharacter()
