@@ -50,6 +50,8 @@ function StartGame3(player1,player2,player1Texture,player2Texture,player1WinTime
     this.mPlayer2WinTimes = player2WinTimes
 
     this.mScoreMsg = null
+
+    this.mBackgroundTexture = 'assets/map3.png'
 }
 
 gEngine.Core.inheritPrototype(StartGame3, Scene)
@@ -69,12 +71,14 @@ StartGame3.prototype.generateRandomObstacle = function(){
 StartGame3.prototype.loadScene = function () {
     gEngine.Textures.loadTexture(this.kPlayer1Texture)
     gEngine.Textures.loadTexture(this.kPlayer2Texture)
+    gEngine.Textures.loadTexture(this.mBackgroundTexture)
   
 }
 
 StartGame3.prototype.unloadScene = function () {
     gEngine.Textures.unloadTexture(this.kPlayer1Texture)
     gEngine.Textures.unloadTexture(this.kPlayer2Texture)
+    gEngine.Textures.unloadTexture(this.mBackgroundTexture)
     let canvas = document.getElementById('GLCanvas')
     canvas.width = '1000'
     canvas.height = '500'
@@ -105,16 +109,18 @@ StartGame3.prototype.initialize = function(){
 
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
     this.mPlayer1 = new Player1(this.kPlayer1Texture,this.mPlayer1Character)
+    this.mPlayer1.getXform().setPosition(-18,0)
     this.mPlayer2 = new Player2(this.kPlayer2Texture,this.mPlayer2Character)
+    this.mPlayer2.getXform().setPosition(18,0)
     this.mGamePlayers = new GameObjectSet()
     this.mGamePlayers.addToSet(this.mPlayer1)
     this.mGamePlayers.addToSet(this.mPlayer2)
 
-    this.mGameArea = new Renderable()
-    this.mGameArea.setColor([0,1,0,1])
+    this.mGameArea = new SpriteRenderable(this.mBackgroundTexture)
+    this.mGameArea.setColor([0,1,0,0])
     let xf = this.mGameArea.getXform()
     xf.setPosition(0,0)
-    xf.setSize(100,49)
+    xf.setSize(63,63)
     //let pos = xf.getPosition()
     // let size = xf.getSize()
     this.mBoundTop = new BoundLine([0,25],[100,2])
@@ -156,7 +162,7 @@ StartGame3.prototype.draw = function(){
     this.mGameArea.draw(this.mCamera)
     this.mGamePlayers.draw(this.mCamera)
     // this.mBoundSet.draw(this.mCamera)
-    this.mObstacles.draw(this.mCamera)
+    //this.mObstacles.draw(this.mCamera)
     this.mPlayer1SkillMsg.draw(this.mCamera)
     this.mPlayer2SkillMsg.draw(this.mCamera)
     this.mScoreMsg.draw(this.mCamera)
@@ -179,22 +185,24 @@ StartGame3.prototype.update = function(){
     //this.mPlayer2.keyControl()
     this.mGamePlayers.update(this.mCamera)
     this.mObstacles.update(this.mCamera)
-    gEngine.Physics.processCollision(this.mGamePlayers.concat(this.mObstacles), this.mCollisionInfos)
-    gEngine.Physics.processCollision(this.mObstacles.concat(this.mBoundSet),this.mCollisionInfos)
+    gEngine.Physics.processCollision(this.mGamePlayers, this.mCollisionInfos)
+  //  gEngine.Physics.processCollision(this.mObstacles.concat(this.mBoundSet),this.mCollisionInfos)
     let pos1 = this.mPlayer1.getXform().getPosition()
+    let distance1 = Math.sqrt(pos1[0]*pos1[0] + pos1[1] * pos1[1])
     let pos2 = this.mPlayer2.getXform().getPosition()
-    let boundSize = this.mGameArea.getXform().getSize()
-    if(pos1[0]>boundSize[0]/2 || pos1[0]<-boundSize[0]/2){
+    let distance2 = Math.sqrt(pos2[0]*pos2[0] + pos2[1] * pos2[1])
+    let r = 25
+    if(distance1 > r){
         //this.mResult = 'player2 wins'
         this.mPlayer2WinTimes += 1
         gEngine.GameLoop.stop()
       
-    }else if(pos2[0]>boundSize[0]/2|| pos2[0]<-boundSize[0]/2){
+    }else if(distance2 > r){
         // this.mResult = 'player1 wins'
         this.mPlayer1WinTimes += 1
         gEngine.GameLoop.stop()
        
-    } else if(pos1[1]>boundSize[1]/2  || pos1[1]<-boundSize[1]/2 ){
+    }/* else if(pos1[1]>boundSize[1]/2  || pos1[1]<-boundSize[1]/2 ){
         // this.mResult = 'player2 wins'
         this.mPlayer2WinTimes += 1
         gEngine.GameLoop.stop()
@@ -203,7 +211,7 @@ StartGame3.prototype.update = function(){
         //this.mResult = 'player1 wins'
         this.mPlayer1WinTimes += 1
         gEngine.GameLoop.stop()
-    }
+    }*/
 
     /*   if(this.mResult !== null){
         //CameraShake(state, xDelta, yDelta, shakeFrequency, shakeDuration)

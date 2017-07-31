@@ -35,6 +35,9 @@ function StartScene() {
 
     this.mMsg3 = null
 
+    this.mBackground = null
+    this.mBackgroundTexture='assets/FirstBackground.png'
+
     
 }
 gEngine.Core.inheritPrototype(StartScene, Scene)
@@ -51,22 +54,26 @@ StartScene.prototype.initialize = function () {
     )
     this.mCamera.setBackgroundColor([1, 1, 1, 1])
 
-    this.mMsg = new FontRenderable('FURIOUS   STRIKE ')
-    this.mMsg.getXform().setPosition(26, 53)
-    this.mMsg.setTextHeight(5)
+    this.mMsg = new FontRenderable('FURIOUS STRIKE ')
+    this.mMsg.getXform().setPosition(30, 49)
+    this.mMsg.setTextHeight(4)
      
     this.mMsg1 = new FontRenderable('Start Game ')
-    this.mMsg1.getXform().setPosition(26, 45)
+    this.mMsg1.getXform().setPosition(32, 38)
     this.mMsg1.setTextHeight(4)
 
     this.mMsg2 = new FontRenderable('About us ')
-    this.mMsg2.getXform().setPosition(26, 35)
+    this.mMsg2.getXform().setPosition(32, 32)
     this.mMsg2.setTextHeight(2)
     
 
     this.mMsg3 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY> ')
-    this.mMsg3.getXform().setPosition(26, 30)
+    this.mMsg3.getXform().setPosition(26, 27)
     this.mMsg3.setTextHeight(2)
+
+    this.mBackground = new SpriteRenderable(this.mBackgroundTexture)
+    this.mBackground.getXform().setPosition(50,50)
+    this.mBackground.getXform().setSize(100,50)
     
     
 }
@@ -78,7 +85,7 @@ StartScene.prototype.draw = function () {
     this.mCamera.setupViewProjection()
     
     
-    
+    this.mBackground.draw(this.mCamera)
   
     this.mMsg.draw(this.mCamera)
     
@@ -144,11 +151,11 @@ StartScene.prototype.update = function () {
 }
 
 StartScene.prototype.loadScene = function () {
-   
+    gEngine.Textures.loadTexture(this.mBackgroundTexture)
 }
 
 StartScene.prototype.unloadScene = function() {
-    
+    gEngine.Textures.unloadTexture(this.mBackgroundTexture)
     let next = null
     if(this.mSceneState === SceneState.StartGame)
         next = new RuleScene()

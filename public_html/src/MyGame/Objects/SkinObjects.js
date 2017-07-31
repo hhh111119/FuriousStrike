@@ -42,7 +42,7 @@ var gSkinAssets = {
     'TheAnswer' : 'assets/skin/TheAnswer.png',
     'Tony' : 'assets/skin/Tony.png',
     'Umaru' : 'assets/skin/Umaru.jpg',
-    'McGoat' : 'assets/skin/McGoat.png',
+    'McGoat' : 'assets/skin/McGoat.png'
 }
 
 /*for(var i in gSkinAssets){

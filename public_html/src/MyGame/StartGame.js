@@ -55,6 +55,8 @@ function StartGame(player1,player2,player1Texture,player2Texture,player1WinTimes
     this.mPlayer2WinTimes = player2WinTimes
 
     this.mScoreMsg = null
+
+    this.mBackgroundTexture = 'assets/map1.png'
 }
 
 gEngine.Core.inheritPrototype(StartGame, Scene)
@@ -74,12 +76,14 @@ StartGame.prototype.generateRandomObstacle = function(){
 StartGame.prototype.loadScene = function () {
     gEngine.Textures.loadTexture(this.kPlayer1Texture)
     gEngine.Textures.loadTexture(this.kPlayer2Texture)
+    gEngine.Textures.loadTexture(this.mBackgroundTexture)
   
 }
 
 StartGame.prototype.unloadScene = function () {
     gEngine.Textures.unloadTexture(this.kPlayer1Texture)
     gEngine.Textures.unloadTexture(this.kPlayer2Texture)
+    gEngine.Textures.unloadTexture(this.mBackgroundTexture)
     let canvas = document.getElementById('GLCanvas')
     canvas.width = '1000'
     canvas.height = '500'
@@ -115,11 +119,11 @@ StartGame.prototype.initialize = function(){
     this.mGamePlayers.addToSet(this.mPlayer1)
     this.mGamePlayers.addToSet(this.mPlayer2)
 
-    this.mGameArea = new Renderable()
-    this.mGameArea.setColor([17/255,141/255,1,1])
+    this.mGameArea = new SpriteRenderable(this.mBackgroundTexture)
+    this.mGameArea.setColor([17/255,141/255,1,0])
     let xf = this.mGameArea.getXform()
     xf.setPosition(0,0)
-    xf.setSize(100,49)
+    xf.setSize(100,50)
     //let pos = xf.getPosition()
     // let size = xf.getSize()
     this.mBoundTop = new BoundLine([0,25],[100,2])
@@ -161,7 +165,7 @@ StartGame.prototype.draw = function(){
     this.mGameArea.draw(this.mCamera)
     this.mGamePlayers.draw(this.mCamera)
     // this.mBoundSet.draw(this.mCamera)
-    this.mObstacles.draw(this.mCamera)
+   // this.mObstacles.draw(this.mCamera)
     this.mPlayer1SkillMsg.draw(this.mCamera)
     this.mPlayer2SkillMsg.draw(this.mCamera)
     this.mScoreMsg.draw(this.mCamera)
@@ -184,27 +188,28 @@ StartGame.prototype.update = function(){
     //this.mPlayer2.keyControl()
     this.mGamePlayers.update(this.mCamera)
     this.mObstacles.update(this.mCamera)
-    gEngine.Physics.processCollision(this.mGamePlayers.concat(this.mObstacles), this.mCollisionInfos)
-    gEngine.Physics.processCollision(this.mObstacles.concat(this.mBoundSet),this.mCollisionInfos)
+    gEngine.Physics.processCollision(this.mGamePlayers, this.mCollisionInfos)
+    //gEngine.Physics.processCollision(this.mObstacles.concat(this.mBoundSet),this.mCollisionInfos)
     let pos1 = this.mPlayer1.getXform().getPosition()
     let pos2 = this.mPlayer2.getXform().getPosition()
     let boundSize = this.mGameArea.getXform().getSize()
-    if(pos1[0]>boundSize[0]/2 || pos1[0]<-boundSize[0]/2){
+    let p = 900/1024
+    if(pos1[0]>(boundSize[0]/2)*p || pos1[0]<-boundSize[0]/2*p){
         //this.mResult = 'player2 wins'
         this.mPlayer2WinTimes += 1
         gEngine.GameLoop.stop()
       
-    }else if(pos2[0]>boundSize[0]/2|| pos2[0]<-boundSize[0]/2){
+    }else if(pos2[0]>boundSize[0]/2*p|| pos2[0]<-boundSize[0]/2*p){
         // this.mResult = 'player1 wins'
         this.mPlayer1WinTimes += 1
         gEngine.GameLoop.stop()
        
-    } else if(pos1[1]>boundSize[1]/2  || pos1[1]<-boundSize[1]/2 ){
+    } else if(pos1[1]>boundSize[1]/2 *p || pos1[1]<-boundSize[1]/2*p ){
         // this.mResult = 'player2 wins'
         this.mPlayer2WinTimes += 1
         gEngine.GameLoop.stop()
         
-    } else if(pos2[1]>boundSize[1] /2 || pos2[1]<-boundSize[1] /2 ){
+    } else if(pos2[1]>boundSize[1] /2 * p || pos2[1]<-boundSize[1] /2 * p ){
         //this.mResult = 'player1 wins'
         this.mPlayer1WinTimes += 1
         gEngine.GameLoop.stop()

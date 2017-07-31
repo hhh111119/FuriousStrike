@@ -181,6 +181,7 @@ Player2ChooseScene.prototype.unloadScene = function() {
     
     gEngine.Textures.unloadTexture(this.mPlayer2Texture)
     
-    let next = new StartGame3(this.mPlayer1GameCharacter,this.mPlayer2GameCharacter,this.mPlayer1Texture,this.mPlayer2Texture)
+    //let next = new StartGame3(this.mPlayer1GameCharacter,this.mPlayer2GameCharacter,this.mPlayer1Texture,this.mPlayer2Texture)
+    let next = new ChoosePlayground(this.mPlayer1GameCharacter,this.mPlayer2GameCharacter,this.mPlayer1Texture,this.mPlayer2Texture)
     gEngine.Core.startScene(next)
 }
