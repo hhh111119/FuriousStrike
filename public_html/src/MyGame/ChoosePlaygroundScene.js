@@ -27,7 +27,7 @@ function ChoosePlayground(player1GameCharacter,player2GameCharacter,player1Textu
     this.mPlaygroundSet = []
 
     this.mMsg  = null
-    this
+    this.mMsg1 = null
     this.mCurrentPlayground = 1
 }
 
@@ -47,23 +47,27 @@ ChoosePlayground.prototype.initialize = function () {
     this.mMsg.getXform().setPosition(-100, 200)
     this.mMsg.setTextHeight(70)
 
-    this.mPlayground1 = new FontRenderable('xxxxxxxxxxxxxxxx1')
+    this.mPlayground1 = new FontRenderable('Kennel')
     this.mPlayground1.getXform().setPosition(-100, 100)
     this.mPlayground1.setTextHeight(60)
 
-    this.mPlayground2 = new FontRenderable('xxxxxxxxxxxxxxxxxx2')
+    this.mPlayground2 = new FontRenderable('Minions')
     this.mPlayground2.getXform().setPosition(-100,0)
-    this.mPlayground2.setTextHeight(50)
+    this.mPlayground2.setTextHeight(40)
 
  
    
-    this.mPlayground3 = new FontRenderable('xxxxxxxxxxxxxxxxxxxxx3')
+    this.mPlayground3 = new FontRenderable('PokeBall')
     this.mPlayground3.getXform().setPosition(-100,-100)
-    this.mPlayground3.setTextHeight(50)
+    this.mPlayground3.setTextHeight(40)
 
     this.mPlaygroundSet.push(this.mPlayground1)
     this.mPlaygroundSet.push(this.mPlayground2)
     this.mPlaygroundSet.push(this.mPlayground3)
+
+    this.mMsg1 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY> ')
+    this.mMsg1.getXform().setPosition(-100, -150)
+    this.mMsg1.setTextHeight(20)
 
   
     
@@ -82,6 +86,7 @@ ChoosePlayground.prototype.draw = function () {
     this.mPlayground1.draw(this.mCamera)
     this.mPlayground2.draw(this.mCamera)
     this.mPlayground3.draw(this.mCamera)
+    this.mMsg1.draw(this.mCamera)
     
     
     
@@ -90,7 +95,7 @@ ChoosePlayground.prototype.draw = function () {
 }
 ChoosePlayground.prototype.update = function () {
     
-    this.mPlaygroundSet[this.mCurrentPlayground-1].setTextHeight(50)
+    this.mPlaygroundSet[this.mCurrentPlayground-1].setTextHeight(40)
     if (gEngine.Input.isKeyClicked(gEngine.Input.keys.Space))
         gEngine.GameLoop.stop()
     if (gEngine.Input.isKeyClicked(gEngine.Input.keys.Up)){

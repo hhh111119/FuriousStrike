@@ -16,7 +16,7 @@
 let Say = {
     'assets/skin/Ali.png' : 'This is my place', 
     'assets/skin/Asuka.png' : 'Are you idiot?',
-    'assets/skin/Baka.png' : 'Nani？',
+    'assets/skin/Baka.png' : 'Nani?',
     'assets/skin/BigFundamental.png' : 'The future is yours',
     'assets/skin/BillRazer.png' : 'I come, I see, I conquer',
     'assets/skin/Captain.png' : 'That you must stay who you are',
