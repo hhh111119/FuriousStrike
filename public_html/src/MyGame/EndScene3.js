@@ -33,6 +33,9 @@ function EndScene3(result,lose,isPlayer1Win,player1Character,player2Character) {
 
     this.mPlayer1Character = player1Character
     this.mPlayer2Character = player2Character
+
+    this.mSay = null
+    this.mWhoWinMsg = null
 }
 gEngine.Core.inheritPrototype(EndScene3, Scene)
 
@@ -65,11 +68,22 @@ EndScene3.prototype.initialize = function () {
     this.mMsg2.setTextHeight(40)
     
 
-    this.mMsg3 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY>2 ')
-    this.mMsg3.getXform().setPosition(26, 30)
-    this.mMsg3.setTextHeight(2)
+    this.mMsg3 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY> ')
+    this.mMsg3.getXform().setPosition(26, -20)
+    this.mMsg3.setTextHeight(20)
+
+    this.mSay = new FontRenderable(Say[this.mResult])
+    this.mSay.getXform().setPosition(-250,-150)
+    this.mSay.setTextHeight(20)
     
-    
+    if(this.mIsPlayer1Win === true){
+        this.mWhoWinMsg =new FontRenderable('Player1 Wins')
+    }else{
+        this.mWhoWinMsg =new FontRenderable('Player2 Wins')
+    }
+
+    this.mWhoWinMsg.getXform().setPosition(-220,170)
+    this.mWhoWinMsg.setTextHeight(30)
   
     
     
@@ -88,7 +102,9 @@ EndScene3.prototype.draw = function () {
     this.mMsg1.draw(this.mCamera)
     this.mMsg2.draw(this.mCamera)
     
-    
+    this.mSay.draw(this.mCamera)
+    this.mWhoWinMsg.draw(this.mCamera)
+    this.mMsg3.draw(this.mCamera)
     
     
    

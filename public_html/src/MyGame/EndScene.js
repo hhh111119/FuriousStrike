@@ -12,8 +12,40 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-
 'use strict'  // Operate in Strict mode such that variables must be declared before used!
+let Say = {
+    'assets/skin/Ali.png' : 'This is my place', 
+    'assets/skin/Asuka.png' : 'Are you idiot?',
+    'assets/skin/Baka.png' : 'Nani？',
+    'assets/skin/BigFundamental.png' : 'The future is yours',
+    'assets/skin/BillRazer.png' : 'I come, I see, I conquer',
+    'assets/skin/Captain.png' : 'That you must stay who you are',
+    'assets/skin/Corgi.png': 'wow wow wow',
+    'assets/skin/Darkelf.png' : 'The dark is here',
+    'assets/skin/DarthVader.png' : 'I am your father' ,
+    'assets/skin/Dave.png' : 'Bababa,Bananaaaaaaah!' ,
+    'assets/skin/EVA01.png' : 'I am hungry',
+    'assets/skin/Gian.png' : 'Are you trying to embarrasse me Panghu?' ,
+    'assets/skin/Kanna.png' : 'Magiyabakune',
+    'assets/skin/KingArthur.png' : 'Ex...Calibur',
+    'assets/skin/LanceBean.png' : 'Let us move on',
+    'assets/skin/LittleBug.png' : 'With great power comes great responsibility',
+    'assets/skin/Mamba.png' : 'Have ever seen the scene of Los Angeles at 4am?',
+    'assets/skin/Mario.png' : 'But my Princess is in another castle',
+    'assets/skin/McPig.png' : 'Oink...' ,
+    'assets/skin/Mega.png' : 'baa...',
+    'assets/skin/Pikachu.png' : 'Piiiiikachuuuuuu!',
+    'assets/skin/PokeBall.png' : '......(I can not speak)',
+    'assets/skin/Ram.png' : '864,still being a fool?',
+    'assets/skin/Rei.png' : 'At this moment I do not know what expression to use',
+    'assets/skin/Snorlax.png' : 'Zzzzz...',
+    'assets/skin/Squirtle.png' : 'Jenijeni',
+    'assets/skin/TheAnswer.png' : 'I do not wanna be Micheal Jordan',
+    'assets/skin/Tony.png' : 'I am the Iron Man',
+    'assets/skin/Umaru.jpg' : 'I play to win',
+    'assets/skin/McGoat.png' : 'Baa..Baabaa' 
+}
+
 
 
 
@@ -34,6 +66,9 @@ function EndScene(result,lose,isPlayer1Win,player1Character,player2Character) {
 
     this.mPlayer1Character = player1Character
     this.mPlayer2Character = player2Character
+    
+    this.mSay = null
+    this.mWhoWinMsg = null
 }
 gEngine.Core.inheritPrototype(EndScene, Scene)
 
@@ -64,11 +99,25 @@ EndScene.prototype.initialize = function () {
     this.mMsg2 = new FontRenderable('Restart')
     this.mMsg2.getXform().setPosition(0, 20)
     this.mMsg2.setTextHeight(40)
-    
+
+
+    // console.log(Say[this.mResult]);
+    this.mSay = new FontRenderable(Say[this.mResult])
+    this.mSay.getXform().setPosition(-250,-150)
+    this.mSay.setTextHeight(20)
 
     this.mMsg3 = new FontRenderable('<PRESS: SPACE BAR  CONTROL:ARROW KEY> ')
-    this.mMsg3.getXform().setPosition(26, 30)
-    this.mMsg3.setTextHeight(2)
+    this.mMsg3.getXform().setPosition(26, -20)
+    this.mMsg3.setTextHeight(20)
+
+    if(this.mIsPlayer1Win === true){
+        this.mWhoWinMsg =new FontRenderable('Player1 Wins')
+    }else{
+        this.mWhoWinMsg =new FontRenderable('Player2 Wins')
+    }
+
+    this.mWhoWinMsg.getXform().setPosition(-220,170)
+    this.mWhoWinMsg.setTextHeight(30)
     
     
   
@@ -88,6 +137,9 @@ EndScene.prototype.draw = function () {
     this.mMsg.draw(this.mCamera)
     this.mMsg1.draw(this.mCamera)
     this.mMsg2.draw(this.mCamera)
+    this.mSay.draw(this.mCamera)
+    this.mWhoWinMsg.draw(this.mCamera)
+    this.mMsg3.draw(this.mCamera)
     
     
     
