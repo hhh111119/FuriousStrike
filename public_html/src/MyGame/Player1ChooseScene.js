@@ -171,6 +171,6 @@ Player1ChooseScene.prototype.unloadScene = function() {
     
     
     gEngine.Textures.unloadTexture(this.mPlayer1Skin)
-    let next = new Player2ChooseCharacter(this.mPlayer1Name,this.mPlayer1GameCharacter,this.mPlayer1Skin,)
+    let next = new Player2ChooseCharacter(this.mPlayer1Name,this.mPlayer1GameCharacter,this.mPlayer1Skin)
     gEngine.Core.startScene(next)
 }
