@@ -44,7 +44,7 @@ Player1ChooseCharacter.prototype.initialize = function () {
     this.mPlayer1Msg.getXform().setPosition(-30, 5)
     this.mPlayer1Msg.setTextHeight(6)
 
-    this.mPlayer2Msg = new FontRenderable('Plater2:Waiting')
+    this.mPlayer2Msg = new FontRenderable('Player2:Waiting')
     this.mPlayer2Msg.getXform().setPosition(-30, -5)
     this.mPlayer2Msg.setTextHeight(6)
    

@@ -54,7 +54,7 @@ Player2ChooseScene.prototype.initialize = function () {
     //character1
   
     this.mCharacter1 = new  CharacterInfo()
-    this.mCharacter1.setName('Power',3,[5,70])
+    this.mCharacter1.setName('Powerful',3,[5,70])
     this.mCharacter1.setColor(this.mPlayer2Texture,[4,4],[6,65])
     this.mCharacter1.setWeight('150kg',2,[5,60])
     this.mCharacter1.setSkill('BACK OFF',2,[5,55])
@@ -70,7 +70,7 @@ Player2ChooseScene.prototype.initialize = function () {
     this.mCharacter2.setFeature('quick',2,[35,48])
     //character3 
     this.mCharacter3 = new  CharacterInfo()
-    this.mCharacter3.setName('Balance',2,[65,70])
+    this.mCharacter3.setName('Balanced',2,[65,70])
     this.mCharacter3.setColor(this.mPlayer2Texture,[3,3],[66,65])
     this.mCharacter3.setWeight('85kg',2,[65,60])
     this.mCharacter3.setSkill('PUZZLE',2,[65,55])
